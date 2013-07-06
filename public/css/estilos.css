@@ -1,0 +1,20 @@
+#footer{
+	bottom: 0;
+	position: fixed;
+	padding-bottom: 1.5em;
+}
+#numero_campos{
+	width: 3em;
+}
+#btn_guardar_definicion{
+	display: block;
+	clear: both;
+	margin-top:0.4em; 
+}
+.bloque_tipo_campos{
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	margin: 0.1em 0.1em;
+	padding: 0.1em 0.2em;
+}

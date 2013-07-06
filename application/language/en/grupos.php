@@ -1,0 +1,28 @@
+<?php
+
+return array(
+	'titulo-grupos'=> 'Creating groups or lists',
+	'creacion-grupos'=> 'Group Creation',
+	'nombre-grupo'=> 'Group name',
+	'subir-csv'=> 'Upload database',
+	'definir-campos'=> 'Define Fields',
+	'numero-campos'=> 'Number of fields',
+	'adicionar-campos' => 'Add fields',
+	'mensaje-nombre-grupo' => 'You must enter the group name',
+	'mensaje-numero-campos'=>'You must enter an integer between 0 and 99',
+	'mensaje-grupo-existente'=> 'The group name already exists',
+	'nombre-campo'=> 'Field Name:',
+	'tipo-campo'=> 'Field Type:',
+	'correo'=>'e-mail',
+	'celular'=>'Mobile Phone',
+	'fecha'=>'Date',
+	'numero'=>'Number',
+	'texto'=>'Text',
+	'seleccione-un-tipo-atributo' => 'Choose ...',
+	'mensaje-error-nombre-campo'=>'You must enter a name for the fields',
+	'mensaje-error-tipo-campo'=>'You must select a type for the field',
+	'boton-guardar-definicion' => 'Continue',
+	'adicionar-campo' => 'Add field',
+	'mensaje-confirmacion-eliminacion-campo'=> 'Are you sure you want to delete the field?',
+	'telefono'=>'Mobile Phone',
+);
