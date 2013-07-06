@@ -48,7 +48,14 @@ Route::any('/simple-sms','sms.enviar@index');
 Route::any('/plantillas','sms.plantillas@index');
 Route::any('/grupos','sms.grupos@index');
 Route::any('/avanzado-sms','sms.avanzado@index');
-
+Route::any('gitupdate',function(){
+	ini_set('memory_limit','32M');
+	@set_time_limit(10000);
+	exec('cd /var/www/mailmanup/;git pull origin master',$salida);
+	foreach($salida as $linea){
+		echo $linea.'<br />';	
+	}
+});
 Route::get('/', function(){
 	
 	
