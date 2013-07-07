@@ -54,6 +54,11 @@ Route::any('/git-update',function(){
 	exec('cd /var/www/mailmanup/;git pull origin master',$salida);
         var_dump($salida);
 });
+
+Route::any('/grid',function(){
+	return View::make('sms.grid');
+});
+
 Route::get('/', function(){
 	
 	
