@@ -32,88 +32,127 @@
 	$(document).on("ready", inicioGrid);
 	function inicioGrid(evento){
 		var data = {};
-		var row={};
-		row['celular']='3168765086';
-		row['nombre']='Andres Sucerquia';
-		row['edad']='31';
-		row['correo']='andressucer@gmail.com';
-		data[0] = row;
-		var source =
-	    {
-	        localdata: data,
-	        datatype: "local",
-	        updaterow: function (rowid, rowdata, commit) {
-	            alert('guardando en el servidor');
-	            console.log('guardar en el servidor');
-	            console.log(rowdata);
-	            commit(true);
-
-	        },
-	        addrow: function (rowid, rowdata, position, commit) {
-	            alert('Adicionando fila');
-	            commit(true);
-	        },
-	        deleterow: function (rowid, commit) {
-	            alert('Borrando fila');
-	            commit(true);
-	        },
-	        datafields:
-	        [
-	            { name: 'celular', type: 'string' },
-	            { name: 'nombre', type: 'string' },
-	            { name: 'edad', type: 'number' },
-	            { name: 'correo', type: 'string' },
-	        ]
-	    };
-	    var dataAdapter = new $.jqx.dataAdapter(source);
-	    // initialize jqxGrid
-	    $("#jqxgrid").jqxGrid(
-	    {
-	        width: 700,
-	        height: 400,
-	        source: dataAdapter,
-	        theme: 'bootstrap',
-	        editable: true,
-	        selectionmode: 'multiplecellsadvanced',
-	        columns: [
-	          { text: 'Celular', datafield: 'celular', width: 100, columntype: 'textbox' },
-	          { text: 'Nombre', datafield: 'nombre', columntype: 'textbox', width: 200 },
-	          { text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
-	          	  validation: function (cell, value) {
-	          	  		alert('Validando');
-	          	  }
-	          },
-	          { text: 'Correo', datafield: 'correo', cellsalign: 'right',  width: 200, columntype: 'textbox' },
-	        ]
-	    });
-
-	    $("#jqxgrid").on('cellbeginedit', function (event) {
-	        var args = event.args;
-	        $("#cellbegineditevent").text("Event Type: cellbeginedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
-	    });
-	    $("#jqxgrid").on('cellendedit', function (event) {
-	        var args = event.args;
-	        $("#cellendeditevent").text("Event Type: cellendedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
-	    });
-	    $("#addrowbutton").jqxButton({ theme: 'bootstrap' });
-		$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
-		// create new row.
-	    $("#addrowbutton").on('click', function () {
-			var datarow={};
-			datarow['celular']='3168765086';
-			datarow['nombre']='Andres Sucerquia';
-			datarow['edad']='31';
-			datarow['correo']='andressucer@gmail.com';
-	        var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
-	    });
-	    $("#deleterowbutton").on('click', function () {
-	        var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
-	        var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
-	        if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
-	            var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
-	            var commit = $("#jqxgrid").jqxGrid('deleterow', id);
-	        }
-	    });
+            var firstNames =
+            [
+                "Andrew", "Nancy", "Shelley", "Regina", "Yoshi", "Antoni", "Mayumi", "Ian", "Peter", "Lars", "Petra", "Martin", "Sven", "Elio", "Beate", "Cheryl", "Michael", "Guylene"
+            ];
+            var lastNames =
+            [
+                "Fuller", "Davolio", "Burke", "Murphy", "Nagase", "Saavedra", "Ohno", "Devling", "Wilson", "Peterson", "Winkler", "Bein", "Petersen", "Rossi", "Vileid", "Saylor", "Bjorn", "Nodier"
+            ];
+            var productNames =
+            [
+                "Black Tea", "Green Tea", "Caffe Espresso", "Doubleshot Espresso", "Caffe Latte", "White Chocolate Mocha", "Cramel Latte", "Caffe Americano", "Cappuccino", "Espresso Truffle", "Espresso con Panna", "Peppermint Mocha Twist"
+            ];
+            var priceValues =
+            [
+                "2.25", "1.5", "3.0", "3.3", "4.5", "3.6", "3.8", "2.5", "5.0", "1.75", "3.25", "4.0"
+            ];
+            var generaterow = function (i) {
+                var row = {};
+                var productindex = Math.floor(Math.random() * productNames.length);
+                var price = parseFloat(priceValues[productindex]);
+                var quantity = 1 + Math.round(Math.random() * 10);
+                row["firstname"] = firstNames[Math.floor(Math.random() * firstNames.length)];
+                row["lastname"] = lastNames[Math.floor(Math.random() * lastNames.length)];
+                row["productname"] = productNames[productindex];
+                row["price"] = price;
+                row["quantity"] = quantity;
+                row["total"] = price * quantity;
+                return row;
+            }
+            for (var i = 0; i < 10; i++) {
+                var row = generaterow(i);
+                data[i] = row;
+            }
+            var source =
+            {
+                localdata: data,
+                datatype: "local",
+                datafields:
+                [
+                    { name: 'firstname', type: 'string' },
+                    { name: 'lastname', type: 'string' },
+                    { name: 'productname', type: 'string' },
+                    { name: 'quantity', type: 'number' },
+                    { name: 'price', type: 'number' },
+                    { name: 'total', type: 'number' }
+                ],
+                addrow: function (rowid, rowdata, position, commit) {
+                    // synchronize with the server - send insert command
+                    // call commit with parameter true if the synchronization with the server is successful 
+                    //and with parameter false if the synchronization failed.
+                    // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
+                    commit(true);
+                },
+                deleterow: function (rowid, commit) {
+                    // synchronize with the server - send delete command
+                    // call commit with parameter true if the synchronization with the server is successful 
+                    //and with parameter false if the synchronization failed.
+                    commit(true);
+                },
+                updaterow: function (rowid, newdata, commit) {
+                    // synchronize with the server - send update command
+                    // call commit with parameter true if the synchronization with the server is successful 
+                    // and with parameter false if the synchronization failed.
+                    commit(true);
+                }
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // initialize jqxGrid
+            $("#jqxgrid").jqxGrid(
+            {
+                width: 500,
+                height: 350,
+                source: dataAdapter,
+                theme: theme,
+                columns: [
+                  { text: 'First Name', datafield: 'firstname', width: 100 },
+                  { text: 'Last Name', datafield: 'lastname', width: 100 },
+                  { text: 'Product', datafield: 'productname', width: 180 },
+                  { text: 'Quantity', datafield: 'quantity', width: 80, cellsalign: 'right' },
+                  { text: 'Unit Price', datafield: 'price', width: 90, cellsalign: 'right', cellsformat: 'c2' },
+                  { text: 'Total', datafield: 'total', width: 100, cellsalign: 'right', cellsformat: 'c2' }
+                ]
+            });
+            $("#addrowbutton").jqxButton({ theme: theme });
+            $("#addmultiplerowsbutton").jqxButton({ theme: theme });
+            $("#deleterowbutton").jqxButton({ theme: theme });
+            $("#updaterowbutton").jqxButton({ theme: theme });
+            // update row.
+            $("#updaterowbutton").on('click', function () {
+                var datarow = generaterow();
+                var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+                var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+                if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+                    var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
+                    var commit = $("#jqxgrid").jqxGrid('updaterow', id, datarow);
+                    $("#jqxgrid").jqxGrid('ensurerowvisible', selectedrowindex);
+                }
+            });
+            // create new row.
+            $("#addrowbutton").on('click', function () {
+                var datarow = generaterow();
+                var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
+            });
+            // create new rows.
+            $("#addmultiplerowsbutton").on('click', function () {
+                $("#jqxgrid").jqxGrid('beginupdate');
+                for (var i = 0; i < 10; i++) {
+                    var datarow = generaterow();
+                    var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
+                }
+                $("#jqxgrid").jqxGrid('endupdate');
+            });
+            // delete row.
+            $("#deleterowbutton").on('click', function () {
+                var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+                var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+                if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+                    var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
+                    var commit = $("#jqxgrid").jqxGrid('deleterow', id);
+                }
+            });
 	}
 
 </script>
@@ -126,22 +165,26 @@
 	</h2>
 	<div class="row-fluid">
 		<div class="span10">
-			<div id="jqxWidget">
-			        <div id="jqxgrid"></div>
-			        <div style="font-size: 12px; font-family: Verdana, Geneva, sans-serif; margin-top: 30px;">
-			            <div id="cellbegineditevent"></div>
-			            <div style="margin-top: 10px;" id="cellendeditevent"></div>
-			       </div>
-			       
-			       <div style="margin-left: 10px; float: left;">
-			            <div>
-			                <input id="addrowbutton" type="button" value="Agregar Fila" />
-			            </div>
-			            <div style="margin-top: 10px;">
-			                <input id="deleterowbutton" type="button" value="Borrar Fila" />
-			            </div>
-		            </div>
-			    </div>
+			
+			<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+		        <div style="float: left;" id="jqxgrid">
+		        </div>
+		        <div style="margin-left: 10px; float: left;">
+            <div>
+                <input id="addrowbutton" type="button" value="Add New Row" />
+            </div>
+            <div style="margin-top: 10px;">
+                <input id="addmultiplerowsbutton" type="button" value="Add Multiple New Rows" />
+            </div>
+            <div style="margin-top: 10px;">
+                <input id="deleterowbutton" type="button" value="Delete Selected Row" />
+            </div>
+            <div style="margin-top: 10px;">
+                <input id="updaterowbutton" type="button" value="Update Selected Row" />
+            </div>
+        	</div>
+   	 		</div>
+
 
 		</div>
 	</div>
