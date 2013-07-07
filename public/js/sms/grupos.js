@@ -222,7 +222,7 @@ function mostrarGrid(){
         localdata: data,
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
-            alert('guardando en el servidor');
+            //alert('guardando en el servidor');
             console.log('guardar en el servidor');
             console.log(rowdata);
             commit(true);
@@ -248,7 +248,7 @@ function mostrarGrid(){
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid(
     {
-        width: 700,
+        width: 500,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,
@@ -257,7 +257,7 @@ function mostrarGrid(){
           { text: 'Nombre', datafield: 'nombre', columntype: 'textbox', width: 200 },
           { text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
           	  validation: function (cell, value) {
-          	  		alert('Validando: '+value);
+          	  		//alert('Validando: '+value);
           	  		return true;
           	  }
           },
