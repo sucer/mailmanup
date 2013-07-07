@@ -132,14 +132,15 @@
 			            <div id="cellbegineditevent"></div>
 			            <div style="margin-top: 10px;" id="cellendeditevent"></div>
 			       </div>
+			       
 			       <div style="margin-left: 10px; float: left;">
 			            <div>
-			                <input id="addrowbutton" type="button" value="Add New Row" />
-			            </div>\
+			                <input id="addrowbutton" type="button" value="Agregar Fila" />
+			            </div>
 			            <div style="margin-top: 10px;">
-			                <input id="deleterowbutton" type="button" value="Delete Selected Row" />
-			            </div>\
-		            </div>\
+			                <input id="deleterowbutton" type="button" value="Borrar Fila" />
+			            </div>
+		            </div>
 			    </div>
 
 		</div>
