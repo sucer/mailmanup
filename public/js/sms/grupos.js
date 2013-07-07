@@ -194,20 +194,21 @@ function validarDefinicionCampos(evento){
 function mostrarGrid(){
 	console.log(window.arrCampos);
 
-	var tabla = '<div id="jqxWidget">\
+	var tabla = '<div style="margin-left: 10px; float: left;">\
+		            <div>\
+		                <input id="addrowbutton" type="button" value="Agregar Fila" />\
+		            </div>\
+		            <div style="margin-top: 10px;">\
+		                <input id="deleterowbutton" type="button" value="Borrar fila" />\
+		            </div>\
+	            </div>\
+				<div id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
 			        <div style="font-size: 12px; font-family: Verdana, Geneva, sans-serif; margin-top: 30px;">\
 			            <div id="cellbegineditevent"></div>\
 			            <div style="margin-top: 10px;" id="cellendeditevent"></div>\
 			       </div>\
-			       <div style="margin-left: 10px; float: left;">\
-			            <div>\
-			                <input id="addrowbutton" type="button" value="Add New Row" />\
-			            </div>\
-			            <div style="margin-top: 10px;">\
-			                <input id="deleterowbutton" type="button" value="Delete Selected Row" />\
-			            </div>\
-		            </div>\
+			       
 			    </div>';
 	$('#tabla_grid').html(tabla);
 
