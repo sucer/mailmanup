@@ -208,7 +208,6 @@ function mostrarGrid(){
 			            <div id="cellbegineditevent"></div>\
 			            <div style="margin-top: 10px;" id="cellendeditevent"></div>\
 			       </div>\
-			       
 			    </div>';
 	$('#tabla_grid').html(tabla);
 
