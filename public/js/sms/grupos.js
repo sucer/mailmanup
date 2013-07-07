@@ -282,7 +282,7 @@ function mostrarGrid(){
 		datarow['celular']='3168765086';
 		datarow['nombre']='Andres Sucerquia';
 		datarow['edad']='31';
-		datarow['correo']='andressucer@gmail.com':
+		datarow['correo']='andressucer@gmail.com';
         var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
     });
     $("#deleterowbutton").on('click', function () {
