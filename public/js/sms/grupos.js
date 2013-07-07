@@ -210,16 +210,10 @@ function mostrarGrid(){
 		            </div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);
-	var data = {};
-	var row={};
-	row['celular']='';
-	row['nombre']='';
-	row['edad']='';
-	row['correo']='';
-	data[0] = row;
+
 	var source =
     {
-        localdata: data,
+        localdata: [{'celular':'','nombre':'','edad':'','correo':''},],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             //alert('guardando en el servidor');
@@ -229,11 +223,11 @@ function mostrarGrid(){
 
         },
         addrow: function (rowid, rowdata, position, commit) {
-            alert('Adicionando fila');
+            //alert('Adicionando fila');
             commit(true);
         },
         deleterow: function (rowid, commit) {
-            alert('Borrando fila');
+            //alert('Borrando fila');
             commit(true);
         },
         datafields:
@@ -248,7 +242,7 @@ function mostrarGrid(){
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid(
     {
-        width: 500,
+        width: 580,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,
@@ -277,11 +271,7 @@ function mostrarGrid(){
 	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
 	// create new row.
     $("#addrowbutton").on('click', function () {
-		var datarow={};
-		datarow['celular']='';
-		datarow['nombre']='';
-		datarow['edad']='';
-		datarow['correo']='';
+		var datarow={'celular':'','nombre':'','edad':'','correo':''};
         var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
     });
     $("#deleterowbutton").on('click', function () {

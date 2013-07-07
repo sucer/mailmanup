@@ -65,7 +65,7 @@
 				<input type="button" class="btn btn-info" name="btn_mostrar_campos" id="btn_mostrar_campos" value="{{__('grupos.adicionar-campos')}}"/>
 				<div id="campos_a_definir"></div>
 			</div>
-			<div id="tabla_grid"></div>
 		</div>
 	</div>
+	<div id="tabla_grid"></div>
 @endsection
