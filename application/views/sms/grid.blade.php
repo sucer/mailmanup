@@ -105,7 +105,7 @@
                 width: 500,
                 height: 350,
                 source: dataAdapter,
-                theme: theme,
+                theme: 'bootstrap',
                 columns: [
                   { text: 'First Name', datafield: 'firstname', width: 100 },
                   { text: 'Last Name', datafield: 'lastname', width: 100 },
@@ -115,10 +115,10 @@
                   { text: 'Total', datafield: 'total', width: 100, cellsalign: 'right', cellsformat: 'c2' }
                 ]
             });
-            $("#addrowbutton").jqxButton({ theme: theme });
-            $("#addmultiplerowsbutton").jqxButton({ theme: theme });
-            $("#deleterowbutton").jqxButton({ theme: theme });
-            $("#updaterowbutton").jqxButton({ theme: theme });
+            $("#addrowbutton").jqxButton({ theme: 'bootstrap' });
+            $("#addmultiplerowsbutton").jqxButton({ theme: 'bootstrap' });
+            $("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
+            $("#updaterowbutton").jqxButton({ theme: 'bootstrap' });
             // update row.
             $("#updaterowbutton").on('click', function () {
                 var datarow = generaterow();
