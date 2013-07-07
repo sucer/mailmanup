@@ -212,10 +212,10 @@ function mostrarGrid(){
 	$('#tabla_grid').html(tabla);
 	var data = {};
 	var row={};
-	row['celular']='3168765086';
-	row['nombre']='Andres Sucerquia';
-	row['edad']='31';
-	row['correo']='andressucer@gmail.com';
+	row['celular']='';
+	row['nombre']='';
+	row['edad']='';
+	row['correo']='';
 	data[0] = row;
 	var source =
     {
@@ -249,17 +249,16 @@ function mostrarGrid(){
     $("#jqxgrid").jqxGrid(
     {
         width: 700,
-        height: 400,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,
-        selectionmode: 'multiplecellsadvanced',
         columns: [
           { text: 'Celular', datafield: 'celular', width: 100, columntype: 'textbox' },
           { text: 'Nombre', datafield: 'nombre', columntype: 'textbox', width: 200 },
           { text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
           	  validation: function (cell, value) {
-          	  		alert('Validando');
+          	  		alert('Validando: '+value);
+          	  		return true;
           	  }
           },
           { text: 'Correo', datafield: 'correo', cellsalign: 'right',  width: 200, columntype: 'textbox' },
@@ -279,10 +278,10 @@ function mostrarGrid(){
 	// create new row.
     $("#addrowbutton").on('click', function () {
 		var datarow={};
-		datarow['celular']='3168765086';
-		datarow['nombre']='Andres Sucerquia';
-		datarow['edad']='31';
-		datarow['correo']='andressucer@gmail.com';
+		datarow['celular']='';
+		datarow['nombre']='';
+		datarow['edad']='';
+		datarow['correo']='';
         var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
     });
     $("#deleterowbutton").on('click', function () {

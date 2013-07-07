@@ -32,7 +32,7 @@
 <script>
 	$(document).on("ready", inicioGrid);
 	function inicioGrid(evento){
-		var data = {};
+			var data = {};
             var firstNames =
             [
                 "Andrew", "Nancy", "Shelley", "Regina", "Yoshi", "Antoni", "Mayumi", "Ian", "Peter", "Lars", "Petra", "Martin", "Sven", "Elio", "Beate", "Cheryl", "Michael", "Guylene"
