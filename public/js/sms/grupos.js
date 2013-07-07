@@ -215,7 +215,7 @@ function mostrarGrid(){
 	row['celular']='3168765086';
 	row['nombre']='Andres Sucerquia';
 	row['edad']='31';
-	row['correo']='andressucer@gmail.com':
+	row['correo']='andressucer@gmail.com';
 	data[0] = row;
 	var source =
     {
