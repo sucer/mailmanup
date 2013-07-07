@@ -163,29 +163,27 @@
 	<h2>
 	{{__('grupos.creacion-grupos')}}
 	</h2>
-	<div class="row-fluid">
-		<div class="span10">
+	
 			
-			<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
-		        <div style="float: left;" id="jqxgrid">
-		        </div>
-		        <div style="margin-left: 10px; float: left;">
-            <div>
-                <input id="addrowbutton" type="button" value="Add New Row" />
-            </div>
-            <div style="margin-top: 10px;">
-                <input id="addmultiplerowsbutton" type="button" value="Add Multiple New Rows" />
-            </div>
-            <div style="margin-top: 10px;">
-                <input id="deleterowbutton" type="button" value="Delete Selected Row" />
-            </div>
-            <div style="margin-top: 10px;">
-                <input id="updaterowbutton" type="button" value="Update Selected Row" />
-            </div>
-        	</div>
-   	 		</div>
-
-
-		</div>
+	<div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <div style="float: left;" id="jqxgrid">
+        </div>
+        <div style="margin-left: 10px; float: left;">
+    <div>
+        <input id="addrowbutton" type="button" value="Add New Row" />
+    </div>
+    <div style="margin-top: 10px;">
+        <input id="addmultiplerowsbutton" type="button" value="Add Multiple New Rows" />
+    </div>
+    <div style="margin-top: 10px;">
+        <input id="deleterowbutton" type="button" value="Delete Selected Row" />
+    </div>
+    <div style="margin-top: 10px;">
+        <input id="updaterowbutton" type="button" value="Update Selected Row" />
+    </div>
 	</div>
+ 		</div>
+
+
+		
 @endsection
