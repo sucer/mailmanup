@@ -3,6 +3,7 @@
 <title>{{ __('grupos.titulo-grupos')}}</title>
 @endsection
 @section('css')
+{{ HTML::style('js/jqwidgets/styles/jqx.base.css') }}
 {{ HTML::style('js/jqwidgets/styles/jqx.bootstrap.css') }}
 @endsection
 
