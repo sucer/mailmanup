@@ -52,7 +52,7 @@ Route::any('/git-update',function(){
 	ini_set('memory_limit','32M');
 	@set_time_limit(10000);
 	exec('cd /var/www/mailmanup/;git pull origin master',$salida);
-        return $salida[0];
+        var_dump($salida);
 });
 Route::get('/', function(){
 	
