@@ -248,9 +248,8 @@ function mostrarGrid(evento){
 			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
-		var validacion = window.arrCampos[c].campo.validacion;
 		window.columnas_grid.push({
-			"expresion_regular": validacion,
+			"expresion_regular":  window.arrCampos[c].campo.validacion,
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
