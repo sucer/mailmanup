@@ -1,6 +1,6 @@
 //Definicion de variables globales
 //Objeto global con la definicion de los campos de formulario inicial antes del grid
-var arrCampos = {};
+var arrCampos = [];
 /* Estructura arreglo arrCampos
 	[
 		{ "campo":'producción',
@@ -11,9 +11,9 @@ var arrCampos = {};
 //variable global con los datos de la primera fila que van vacios
 var datos_fila_nueva={};
 //tipos de los campos de la fila nueva
-var tipos_fila_nueva={};
+var tipos_fila_nueva=[];
 //columnas de la grid
-var columnas_grid={};
+var columnas_grid=[];
 //variable global de numero de campos
 var numero_campos = 0;
 
