@@ -255,10 +255,9 @@ function mostrarGrid(evento){
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
 					console.log('validando...');
-				    console.log(this.expresion_regular);
 				    console.log(cell);
 				    console.log(value);
-				    if(value.match(this.expresion_regular)===null){
+				    if(value.match(expresion_regular)===null){
 				        alert('el formato no es valido');
 				        return false;
 				    }
