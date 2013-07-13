@@ -12,12 +12,9 @@ datetimeinput
 numberinput
 
 */
-
-
-$(document).on("ready", inicioGrupos);
-//Objeto global con la definicion de los campos 
+//Definicion de variables globales
+//Objeto global con la definicion de los campos de formulario inicial antes del grid
 var arrCampos = {};
-
 /* Estructura arreglo arrCampos
 	[
 		{ "campo":'producción',
@@ -25,26 +22,61 @@ var arrCampos = {};
 		  "validacion": '.*',
 		}
 	] */
-//variable global con los datos de la primera fila que vacios
-var datos={};
-//tipos de los campos
-var tipos={};
-//campos con los tipos de input
-var columnas={};
-
+//variable global con los datos de la primera fila que van vacios
+var datos_fila_nueva={};
+//tipos de los campos de la fila nueva
+var tipos_fila_nueva={};
+//columnas de la grid
+var columnas_grid={};
 //variable global de numero de campos
 var numero_campos = 0;
+
+//Funcion que se ejecuta cuando la pagina carga
+$(document).on("ready", inicioGrupos);
+
 //Funcion que muestra los mensajes de error
 function mostrarMensaje(mensaje){
 	$("#mensaje-error").css('display','block');
 	$("#mensaje-error").append(mensaje+' ');
 }
+
 //Funcion que oculta el mensaje de error
 function cerrarMensaje(evento){
 	$("#mensaje-error").css('display','none');
 	
 }
-//funcion que inicializa la pagina
+
+//Funcion que devuelve la cadena en formato de variable
+function convertirNombreVariable(str){
+    var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+    var to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+    var mapping = {};
+    var ret = [];
+
+    //Arma el mapa de caracteres a reemplazar
+    for(var i = 0; i < from.length; i++){
+        mapping[ from.charAt( i ) ] = to.charAt( i );
+    }
+    //quito los espacios al inicio
+    str= $.trim(str);
+    //cambio los espacio por _
+    str=str.replace(/ /g,"_");
+    //recorre la cadena recibida
+    for( var i = 0; i < str.length; i++ ) {
+        //lee cada caracter
+        var c = str.charAt( i );
+        //mira si el objeto tiene la propiedad caracter especial
+        if( mapping.hasOwnProperty( str.charAt( i ) ) )
+          //coloca el caracter sin tilde, realiza la conversion
+          ret.push( mapping[ c ] );
+        else
+          //coloca el carcater original
+          ret.push( c );
+    }
+    return ret.join('').toLowerCase();
+}
+
+//funcion que inicializa el comportamiento de la pagina
 function inicioGrupos(evento){
 	//inializalizo la pagina
 	$('#form_campos').css('display','none');
@@ -52,8 +84,8 @@ function inicioGrupos(evento){
 	$('#btn_definir_campos').on('click',mostrarDefinicionCampos);
 	$('#btn_mostrar_campos').on('click',mostrarCamposaDefinir);
 	$('#cerar_mensaje').on('click',cerrarMensaje);
-
 }
+
 //funcion que muestra la definicion de los campos
 function mostrarDefinicionCampos(evento){
 	var nombre= $('#nombre_grupo').val();
