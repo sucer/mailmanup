@@ -249,16 +249,16 @@ function mostrarGrid(evento){
 		});
 		//carga las opciones de entrada para cada campo
 		window.columnas_grid.push({
-			"expresion_regular":  window.arrCampos[c].validacion,
+			"expresion_regular": window.arrCampos[c].validacion,
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
 					console.log('validando...');
-				    console.log(expresion_regular);
+				    console.log(this.expresion_regular);
 				    console.log(cell);
 				    console.log(value);
-				    if(value.match(expresion_regular)===null){
+				    if(value.match(this.expresion_regular)===null){
 				        alert('el formato no es valido');
 				        return false;
 				    }
