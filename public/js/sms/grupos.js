@@ -248,16 +248,17 @@ function mostrarGrid(evento){
 			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
+		var validacion = window.arrCampos[c].campo.validacion;
 		window.columnas_grid.push({
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
           	  		console.log('validando...');
-          	  		var expresion_regular = eval(window.arrCampos[c].campo.validacion);
+          	  		var expresion_regular = validacion;
 				    //valida la URL
 				    console.log(expresion_regular);
-				    console.log(window.arrCampos[c].campo.validacion)
+				    console.log(validacion)
 				    console.log(cell);
 				    console.log(value);
 				    if(value.match(expresion_regular)===null){
