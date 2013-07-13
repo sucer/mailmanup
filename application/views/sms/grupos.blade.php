@@ -41,6 +41,7 @@
 	localStorage.adicionar_campo = '{{__("grupos.adicionar-campo")}}';
 	localStorage.mensaje_confirmacion_eliminacion_campo= '{{__("grupos.mensaje-confirmacion-eliminacion-campo")}}';
 	localStorage.telefono = '{{__("grupos.telefono")}}';
+	localStorage.id_atributo_telefono = {{ Config::get('mailmanup.id_atributo_telefono') }};
 </script>
 @endsection
 

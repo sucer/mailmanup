@@ -86,8 +86,9 @@ function inicioGrupos(evento){
 	$('#cerar_mensaje').on('click',cerrarMensaje);
 }
 
-//funcion que muestra la definicion de los campos
+//funcion que muestra el formulacio de la definicion del numero de 
 function mostrarDefinicionCampos(evento){
+	//Nombre de grupo o base de datos
 	var nombre= $('#nombre_grupo').val();
 	if(nombre == ""){
 		mostrarMensaje(localStorage.mensaje_error_nombre_grupo);
@@ -103,6 +104,8 @@ function mostrarDefinicionCampos(evento){
 	   async: false,
 	   success: function(res){	
        		if(res=="true"){
+       			//el grupo no existe se puede continuar
+       			//cierra el mensaje en caso de que estuviera abierto
        			cerrarMensaje();
        			//desactiva la edición del campo
        			$('#nombre_grupo').attr('disabled','true');
@@ -116,17 +119,22 @@ function mostrarDefinicionCampos(evento){
 	});
 }
 
-//funcion que crea el formulario con la definicion de los campos dependiendo el número
+//funcion que muestra el formulario con la definicion de los campos dependiendo el número de campos
 function mostrarCamposaDefinir(evento){
+	//numero de campos a crear
 	var numero = $('#numero_campos').val();
+	//valida que sea un numero entero
 	if($.isNumeric(numero) && Math.floor(numero) == numero && numero.length>=1 && numero.length <= 2){
+		//cierra el mensaje en caso de que estuviera abierto
 		cerrarMensaje();
+		//asigna el numero de campos a la variable global 
 		window.numero_campos=numero;
-		//ocultar boton
 		
+		//oculta el boton
 		$('#numero_campos').attr('disabled','true');
+		//variable con las opciones de los tipos disponibles
 		var tipos="";
-		//hacer llamado ajax para traer la lista de tipos de atributos
+		//llamado ajax para traer la lista de tipos de atributos
 		$.ajax({
 		   type: "POST",
 		   url: localStorage.url_base_app_dominio+"/get-tipos",
@@ -136,10 +144,11 @@ function mostrarCamposaDefinir(evento){
 	          localStorage.opciones_tipos=res;
 	       }
 		});
+		//activa los eventos de los botones 
 		$('#btn_mostrar_campos').off('click',mostrarCamposaDefinir);
 		$('#btn_mostrar_campos').attr('value',localStorage.adicionar_campo);
 		$('#btn_mostrar_campos').on('click',adicionarCampo);
-
+		//construye el html dinamico
 		var html='<div id="seccion_campos">';
 		for (var i = 1; i <= window.numero_campos; i++){
 			if( i == 1){
@@ -174,15 +183,15 @@ function mostrarCamposaDefinir(evento){
 				';
 		$('#campos_a_definir').html(html);
 		//primer campo telefono
-		$('#tipo_campo_1').val(2);
-		//evento del boton	
+		$('#tipo_campo_1').val(localStorage.id_atributo_telefono);
+		//evento del boton
 		$('#btn_guardar_definicion').on('click',validarDefinicionCampos);
 	}else{
 		mostrarMensaje(localStorage.mensaje_error_numero_campos);
 		return 0;
 	}
 }
-//adiciona un campo
+//funcion que adiciona un campo
 function adicionarCampo(){
 	$('#numero_campos').val(parseInt($('#numero_campos').val())+1);
 	window.numero_campos++;
@@ -199,7 +208,8 @@ function adicionarCampo(){
 		';
 	$('#seccion_campos').append(html);
 }
-//elimina el campo i
+
+//funcion que elimina el campo i
 function eliminarCampo(i){
 	if(confirm(localStorage.mensaje_confirmacion_eliminacion_campo)){
 		$('#div_campo_'+i).remove();
@@ -209,7 +219,7 @@ function eliminarCampo(i){
 
 //funcion que valida la definicion de los campos
 function validarDefinicionCampos(evento){
-	
+	//cierra el mensaje en caso de que estuviera abierto
 	cerrarMensaje();
 	for (var i = 1; i <= window.numero_campos; i++){
 		if($('#'+'campo_'+i).length!=0){
@@ -222,35 +232,62 @@ function validarDefinicionCampos(evento){
 				return false;
 			}
 			cerrarMensaje();
-			window.arrCampos.push( { "campo":$('#'+'campo_'+i).val(),"tipo":$('#'+'tipo_campo_'+i).val(),"validacion":$('#'+'tipo_campo_'+i)[0][$('#'+'tipo_campo_'+i)[0].selectedIndex].title } );
+			window.arrCampos.push( { 
+				"campo": $('#'+'campo_'+i).val(),
+				"tipo": $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].label,
+				"validacion":$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title 
+			});
 		}
 	}
+	//oculto la seccion de creacion de campos
 	$('#seccion_campos').hide();
 	$('#btn_mostrar_campos').hide();
 	$('#btn_guardar_definicion').hide();
+	//llama a la funcion que crea la grid dinamica para el ingreso de los datos de cada campo
 	mostrarGrid();
 }
 
 function mostrarGrid(){
+	console.log('arrCampos');
 	console.log(window.arrCampos);
-/*
-{ text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
-          	  validation: function (cell, value) {
-          	  		//alert('Validando: '+value);
-          	  		return true;
-          	  }
-          }
-*/
-	for (c in window.arrCampos){
-		window.datos[window.arrCampos[c].campo]='';
-		window.tipos.push({name:window.arrCampos[c].campo,type: 'string'});
-		window.columnas.push({text:window.arrCampos[c].campo,datafield:window.arrCampos[c].campo, columntype:window.arrCampos[c].tipo });
-	}
-	console.log('datos:');
-	console.log(window.datos);
-	console.log('tipos:');
-	console.log(window.tipos);
 
+	//recorro el arreglo de campos
+	for (c in window.arrCampos){
+		//carga la fila nueva con valores vacios
+		window.datos_fila_nueva[ window.arrCampos[c].campo ] ='';
+		//carga los tipos todos string
+		window.tipos_fila_nueva.push({
+			"name": window.arrCampos[c].campo,
+			"type": 'string',
+		});
+		//carga las opciones de entrada para cada campo
+		window.columnas_grid.push({
+			"text": window.arrCampos[c].campo,
+			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
+			"columntype": window.arrCampos[c].tipo,
+			"validation": function(cell, value){
+          	  		var expresion_regular = window.arrCampos[c].campo.validacion;
+				    //valida la URL
+				    console.log('validando...');
+				    console.log(cell);
+				    console.log(value);
+				    if(value.match(expresion_regular)===null){
+				        alert('el formato no es valido');
+				        return false;
+				    }
+          	  		return true;
+          	},
+		});
+	}
+
+	console.log('datos_fila_nueva:');
+	console.log(window.datos_fila_nueva);
+	console.log('tipos_fila_nueva:');
+	console.log(window.tipos_fila_nueva);
+	console.log('columnas:');
+	console.log(window.columnas_grid);
+
+	//crea el html de la grid
 	var tabla = '<div style="margin-left: 10px; float: left;">\
 		            <div>\
 		                <input id="addrowbutton" type="button" value="Agregar Fila" />\
@@ -268,9 +305,10 @@ function mostrarGrid(){
 			    </div>';
 	$('#tabla_grid').html(tabla);
 
+	//fuente de datos
 	var source =
     {
-        localdata: window.datos,
+        localdata: [{window.datos_fila_nueva}],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             //alert('guardando en el servidor');
@@ -280,16 +318,22 @@ function mostrarGrid(){
 
         },
         addrow: function (rowid, rowdata, position, commit) {
-            //alert('Adicionando fila');
+            console.log('adicionando fila');
+            console.log(rowid);
+            console.log(rowdata);
+            console.log(position);
+            console.log(commit);
             commit(true);
         },
         deleterow: function (rowid, commit) {
-            //alert('Borrando fila');
+			console.log('adicionando fila');
+            console.log(rowid);
+            console.log(commit);
             commit(true);
         },
-        datafields: window.tipos,
-        
+        datafields: window.tipos_fila_nueva,
     };
+
     var dataAdapter = new $.jqx.dataAdapter(source);
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid(
@@ -300,7 +344,7 @@ function mostrarGrid(){
         editable: true,
         sortable: true,
         selectionmode: 'singlerow',
-        columns: window.columnas,
+        columns: window.columnas_grid,
     });
 
     $("#jqxgrid").on('cellbeginedit', function (event) {
@@ -311,12 +355,12 @@ function mostrarGrid(){
         var args = event.args;
         $("#cellendeditevent").text("Event Type: cellendedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
     });
+
     $("#addrowbutton").jqxButton({ theme: 'bootstrap' });
 	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
 	// create new row.
     $("#addrowbutton").on('click', function () {
-		var datarow={'celular':'','nombre':'','edad':'','correo':''};
-        var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
+        var commit = $("#jqxgrid").jqxGrid('addrow', null, window.datos_fila_nueva);
     });
     $("#deleterowbutton").on('click', function () {
         var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
