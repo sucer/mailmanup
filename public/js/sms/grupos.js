@@ -169,7 +169,7 @@ function mostrarCamposaDefinir(evento){
 				';
 		$('#campos_a_definir').html(html);
 		//primer campo telefono
-		$('#tipo_campo_1').val(localStorage.id_atributo_telefono);
+		$('#tipo_campo_1').val(localStorage.id_atributo_telefono+'_textbox');
 		//evento del boton
 		$('#btn_guardar_definicion').on('click',validarDefinicionCampos);
 	}else{
@@ -220,8 +220,8 @@ function validarDefinicionCampos(evento){
 			}
 			cerrarMensaje();
 			window.arrCampos.push( { 
-				"campo": $('#'+'campo_'+i).val(),
-				"tipo": $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].alt,
+				"campo": convertirNombreVariable($('#'+'campo_'+i).val()),
+				"tipo": $('#'+'tipo_campo_'+i).val().split('_')[1],
 				"validacion":$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title 
 			});
 		}
