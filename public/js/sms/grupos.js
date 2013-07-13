@@ -254,12 +254,11 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-          	  		console.log('validando...');
-				    //valida la URL
-				    console.log(this.expresion_regular);
+					console.log('validando...');
+				    console.log(expresion_regular);
 				    console.log(cell);
 				    console.log(value);
-				    if(value.match(this.expresion_regular)===null){
+				    if(value.match(expresion_regular)===null){
 				        alert('el formato no es valido');
 				        return false;
 				    }
