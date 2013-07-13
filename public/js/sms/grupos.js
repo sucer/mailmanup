@@ -253,10 +253,11 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-          	  		var expresion_regular = window.arrCampos[c].campo.validacion;
+          	  		console.log('validando...');
+          	  		var expresion_regular = eval(window.arrCampos[c].campo.validacion);
 				    //valida la URL
 				    console.log(expresion_regular);
-				    console.log('validando...');
+				    console.log(window.arrCampos[c].campo.validacion)
 				    console.log(cell);
 				    console.log(value);
 				    if(value.match(expresion_regular)===null){
