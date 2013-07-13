@@ -89,6 +89,7 @@ class Creacion_De_Tablas {
 		    $table->increments('id_tipo_atributo');
 		    $table->text('tipo_atributo');
 		    $table->text('validacion');
+		    $table->text('tipo_jqxgrid');
 		});
 
 		Schema::create('atributo', function($table){

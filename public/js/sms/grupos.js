@@ -16,14 +16,22 @@ numberinput
 
 $(document).on("ready", inicioGrupos);
 //Objeto global con la definicion de los campos 
-var arrCampos = [];
+var arrCampos = {};
+
 /* Estructura arreglo arrCampos
 	[
 		{ "campo":'producción',
-		  "id_tipo": 1,
+		  "tipo": 1,
 		  "validacion": '.*',
 		}
 	] */
+//variable global con los datos de la primera fila que vacios
+var datos={};
+//tipos de los campos
+var tipos={};
+//campos con los tipos de input
+var columnas={};
+
 //variable global de numero de campos
 var numero_campos = 0;
 //Funcion que muestra los mensajes de error
@@ -182,7 +190,7 @@ function validarDefinicionCampos(evento){
 				return false;
 			}
 			cerrarMensaje();
-			window.arrCampos.push( { "campo":$('#'+'campo_'+i).val(),"id_tipo":$('#'+'tipo_campo_'+i).val(),"validacion":$('#'+'tipo_campo_'+i)[0][$('#'+'tipo_campo_'+i)[0].selectedIndex].title } );
+			window.arrCampos.push( { "campo":$('#'+'campo_'+i).val(),"tipo":$('#'+'tipo_campo_'+i).val(),"validacion":$('#'+'tipo_campo_'+i)[0][$('#'+'tipo_campo_'+i)[0].selectedIndex].title } );
 		}
 	}
 	$('#seccion_campos').hide();
@@ -193,6 +201,23 @@ function validarDefinicionCampos(evento){
 
 function mostrarGrid(){
 	console.log(window.arrCampos);
+/*
+{ text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
+          	  validation: function (cell, value) {
+          	  		//alert('Validando: '+value);
+          	  		return true;
+          	  }
+          }
+*/
+	for (c in window.arrCampos){
+		window.datos[window.arrCampos[c].campo]='';
+		window.tipos.push({name:window.arrCampos[c].campo,type: 'string'});
+		window.columnas.push({text:window.arrCampos[c].campo,datafield:window.arrCampos[c].campo, columntype:window.arrCampos[c].tipo });
+	}
+	console.log('datos:');
+	console.log(window.datos);
+	console.log('tipos:');
+	console.log(window.tipos);
 
 	var tabla = '<div style="margin-left: 10px; float: left;">\
 		            <div>\
@@ -213,7 +238,7 @@ function mostrarGrid(){
 
 	var source =
     {
-        localdata: [{'celular':'','nombre':'','edad':'','correo':''},],
+        localdata: window.datos,
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             //alert('guardando en el servidor');
@@ -230,33 +255,20 @@ function mostrarGrid(){
             //alert('Borrando fila');
             commit(true);
         },
-        datafields:
-        [
-            { name: 'celular', type: 'string' },
-            { name: 'nombre', type: 'string' },
-            { name: 'edad', type: 'number' },
-            { name: 'correo', type: 'string' },
-        ]
+        datafields: window.tipos,
+        
     };
     var dataAdapter = new $.jqx.dataAdapter(source);
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid(
     {
-        width: 580,
+        width: 680,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,
-        columns: [
-          { text: 'Celular', datafield: 'celular', width: 100, columntype: 'textbox' },
-          { text: 'Nombre', datafield: 'nombre', columntype: 'textbox', width: 200 },
-          { text: 'Edad', datafield: 'edad', columntype: 'numberinput', width: 80, 
-          	  validation: function (cell, value) {
-          	  		//alert('Validando: '+value);
-          	  		return true;
-          	  }
-          },
-          { text: 'Correo', datafield: 'correo', cellsalign: 'right',  width: 200, columntype: 'textbox' },
-        ]
+        sortable: true,
+        selectionmode: 'singlerow',
+        columns: window.columnas,
     });
 
     $("#jqxgrid").on('cellbeginedit', function (event) {
