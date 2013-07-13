@@ -221,7 +221,7 @@ function validarDefinicionCampos(evento){
 			cerrarMensaje();
 			window.arrCampos.push( { 
 				"campo": $('#'+'campo_'+i).val(),
-				"tipo": $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].label,
+				"tipo": $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].alt,
 				"validacion":$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title 
 			});
 		}
