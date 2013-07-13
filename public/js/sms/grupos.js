@@ -255,6 +255,7 @@ function mostrarGrid(evento){
 			"validation": function(cell, value){
           	  		var expresion_regular = window.arrCampos[c].campo.validacion;
 				    //valida la URL
+				    console.log(expresion_regular);
 				    console.log('validando...');
 				    console.log(cell);
 				    console.log(value);
