@@ -294,7 +294,7 @@ function mostrarGrid(evento){
 
 	//fuente de datos
 	var source ={
-        localdata: [{window.datos_fila_nueva}],
+        localdata: [window.datos_fila_nueva],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             console.log('guardar en el servidor');
