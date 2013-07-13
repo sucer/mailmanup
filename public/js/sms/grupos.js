@@ -1,17 +1,3 @@
-//Tipos de campos
-/*
-string
-number
-int
-float
-bool
-textbox
-dropdownlist
-checkbox
-datetimeinput
-numberinput
-
-*/
 //Definicion de variables globales
 //Objeto global con la definicion de los campos de formulario inicial antes del grid
 var arrCampos = {};
@@ -191,8 +177,9 @@ function mostrarCamposaDefinir(evento){
 		return 0;
 	}
 }
+
 //funcion que adiciona un campo
-function adicionarCampo(){
+function adicionarCampo(evento){
 	$('#numero_campos').val(parseInt($('#numero_campos').val())+1);
 	window.numero_campos++;
 	var html='\
@@ -247,7 +234,7 @@ function validarDefinicionCampos(evento){
 	mostrarGrid();
 }
 
-function mostrarGrid(){
+function mostrarGrid(evento){
 	console.log('arrCampos');
 	console.log(window.arrCampos);
 
@@ -306,12 +293,10 @@ function mostrarGrid(){
 	$('#tabla_grid').html(tabla);
 
 	//fuente de datos
-	var source =
-    {
+	var source ={
         localdata: [{window.datos_fila_nueva}],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
-            //alert('guardando en el servidor');
             console.log('guardar en el servidor');
             console.log(rowdata);
             commit(true);
@@ -336,8 +321,7 @@ function mostrarGrid(){
 
     var dataAdapter = new $.jqx.dataAdapter(source);
     // initialize jqxGrid
-    $("#jqxgrid").jqxGrid(
-    {
+    $("#jqxgrid").jqxGrid({
         width: 680,
         source: dataAdapter,
         theme: 'bootstrap',
@@ -362,7 +346,7 @@ function mostrarGrid(){
     $("#addrowbutton").on('click', function () {
         var commit = $("#jqxgrid").jqxGrid('addrow', null, window.datos_fila_nueva);
     });
-    $("#deleterowbutton").on('click', function () {
+    $("#deleterowbutton").on('click', function(){
         var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
         var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
         if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
@@ -371,3 +355,14 @@ function mostrarGrid(){
         }
     });
 }
+
+
+
+
+
+
+
+
+
+
+
