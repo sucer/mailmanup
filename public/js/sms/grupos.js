@@ -220,7 +220,7 @@ function validarDefinicionCampos(evento){
 			}
 			cerrarMensaje();
 			window.arrCampos.push( { 
-				"campo": convertirNombreVariable($('#'+'campo_'+i).val()),
+				"campo": $('#'+'campo_'+i).val(),
 				"tipo": $('#'+'tipo_campo_'+i).val().split('_')[1],
 				"validacion":$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title 
 			});
@@ -244,7 +244,7 @@ function mostrarGrid(evento){
 		window.datos_fila_nueva[ window.arrCampos[c].campo ] ='';
 		//carga los tipos todos string
 		window.tipos_fila_nueva.push({
-			"name": window.arrCampos[c].campo,
+			"name": convertirNombreVariable(window.arrCampos[c].campo),
 			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
