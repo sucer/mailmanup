@@ -258,10 +258,14 @@ function mostrarGrid(evento){
 				    console.log(cell);
 				    console.log(value);
 				    if(value.match(expresion_regular)===null){
-				        alert('el formato no es valido');
+				        console.log(value.match(expresion_regular));
+				        console.log('el formato no es valido');
 				        return false;
-				    }
-          	  		return true;
+				    }else{
+				    	console.log(value.match(expresion_regular));
+          	  			console.log('el formato es valido');
+          	  			return true;
+          	  		}
           	},
 		});
 	}
