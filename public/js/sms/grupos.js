@@ -254,10 +254,9 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-					console.log('validando...');
-				    console.log(cell);
-				    console.log(value);
+					console.log(expresion_regular);
 				    var re = new RegExp(expresion_regular,'g');
+				    console.log(value.match(re));
 				    if(value.match(re)===null){
 				        console.log(value.match(re));
 				        console.log('el formato no es valido');
