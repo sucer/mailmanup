@@ -249,16 +249,12 @@ function mostrarGrid(evento){
 		});
 		//carga las opciones de entrada para cada campo
 		window.columnas_grid.push({
-			"expresion_regular": window.arrCampos[c].validacion,
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
 					console.log(window.arrCampos[c].validacion);
-					console.log('despues');
-					return true;
-				    /*
-				    var re = new RegExp(expresion_regular,'g');
+				    var re = new RegExp(window.arrCampos[c].validacion,'g');
 				    console.log(value.match(re));
 				    if(value.match(re)===null){
 				        console.log(value.match(re));
@@ -269,7 +265,7 @@ function mostrarGrid(evento){
           	  			console.log('el formato es valido');
           	  			return true;
           	  		}
-          	  		*/
+          	  		
           	},
 		});
 	}
