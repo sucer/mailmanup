@@ -254,7 +254,9 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-					console.log(this.expresion_regular);
+					console.log(expresion_regular);
+					console.log('despues');
+					return true;
 				    /*
 				    var re = new RegExp(expresion_regular,'g');
 				    console.log(value.match(re));
