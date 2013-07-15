@@ -257,12 +257,13 @@ function mostrarGrid(evento){
 					console.log('validando...');
 				    console.log(cell);
 				    console.log(value);
-				    if(value.match(expresion_regular)===null){
-				        console.log(value.match(expresion_regular));
+				    var re = new RegExp(expresion_regular,'g');
+				    if(value.match(re)===null){
+				        console.log(value.match(re));
 				        console.log('el formato no es valido');
 				        return false;
 				    }else{
-				    	console.log(value.match(expresion_regular));
+				    	console.log(value.match(re));
           	  			console.log('el formato es valido');
           	  			return true;
           	  		}
