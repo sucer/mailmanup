@@ -254,7 +254,8 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-					console.log(expresion_regular);
+					console.log(this.expresion_regular);
+				    /*
 				    var re = new RegExp(expresion_regular,'g');
 				    console.log(value.match(re));
 				    if(value.match(re)===null){
@@ -266,6 +267,7 @@ function mostrarGrid(evento){
           	  			console.log('el formato es valido');
           	  			return true;
           	  		}
+          	  		*/
           	},
 		});
 	}
