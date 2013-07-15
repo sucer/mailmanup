@@ -255,14 +255,12 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-				    console.log(window.columnas_grid);
+				    console.log(c);
 				    var re = new RegExp(window.arrCampos[c].validacion);
 				    if(value.match(re)===null){
-				        console.log(value.match(re));
 				        alert('el formato no es valido');
 				        return false;
 				    }else{
-				    	console.log(value.match(re));
           	  			console.log('el formato es valido');
           	  			return true;
           	  		}
