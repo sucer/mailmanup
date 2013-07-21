@@ -248,15 +248,16 @@ function mostrarGrid(evento){
 			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
+		var expresion_regular = window.arrCampos[c].validacion;
 		window.columnas_grid.push({
-			"expresion": window.arrCampos[c].validacion,
+			"expresion": expresion_regular,
 			"posicion":c,
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-				    console.log(c);
-				    var re = new RegExp(window.arrCampos[c].validacion);
+				    console.log(expresion_regular);
+				    var re = new RegExp(expresion_regular);
 				    if(value.match(re)=== null){
 				        alert('el formato no es valido');
 				        return false;
