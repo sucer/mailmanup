@@ -341,7 +341,7 @@ function mostrarGrid(evento){
         theme: 'bootstrap',
         editable: true,
         sortable: true,
-        autoheight: true,
+        
         selectionmode: 'singlerow',
         columns: window.columnas_grid,
     });
