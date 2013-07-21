@@ -26,4 +26,6 @@ return array(
 	'mensaje-confirmacion-eliminacion-campo'=> '¿Está seguro que desea eliminar el campo?',
 	'telefono'=>'Celular',
 	'mensaje-campo-obligatorio' => 'Este campo es requerido',
+	'hora' => 'Hora',
+
 );
