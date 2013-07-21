@@ -277,6 +277,7 @@ function mostrarGrid(evento){
 
 			    if( value.match(re) === null ){
 			    	console.log('no cumple con le formato');
+			    	console.log(localStorage.mensaje_campo_obligatorio);
 			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
 			    }
 			    console.log('Formato ok');
