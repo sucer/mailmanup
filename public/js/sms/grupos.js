@@ -268,6 +268,8 @@ function mostrarGrid(evento){
 				console.log( window.validaciones[cell.column] );
 		        var re = new RegExp( window.validaciones[cell.column]);
 			    console.log(re);
+			    console.log('valor');
+			    console.log(value);
 			    if(value.match(re) === null){
 			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
 			    }
