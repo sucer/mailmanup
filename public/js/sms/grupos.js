@@ -251,7 +251,7 @@ function mostrarGrid(evento){
 		//carga los tipos todos string
 		window.tipos_fila_nueva.push({
 			"name": convertirNombreVariable(window.arrCampos[c].campo),
-			"type": 'date',
+			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
 		window.columnas_grid.push({
@@ -264,16 +264,23 @@ function mostrarGrid(evento){
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
-				console.log('Validacion: ');
+				console.log('celda:');
+				console.log(cell);
+				
+				console.log('Validacion:');
 				console.log( window.validaciones[cell.column] );
+
 		        var re = new RegExp( window.validaciones[cell.column]);
 			    console.log(re);
+			    
 			    console.log('valor');
 			    console.log(value);
+
 			    if(value.match(re) === null){
 			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
-			    }
-		        return true;
+			    }else{
+		        	return true;
+		        }
 		    },
 		});
 	}
