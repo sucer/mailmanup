@@ -262,7 +262,7 @@ function mostrarGrid(evento){
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
-		        if (value != "") {
+		        if (value == "") {
 		            return { result: false, message: localStorage.mensaje_campo_obligatorio };
 		        }
 		        return true;
