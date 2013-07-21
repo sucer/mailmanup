@@ -266,24 +266,22 @@ function mostrarGrid(evento){
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
-		        console.log('celda');
-		        console.log(cell);
-		        console.log( window.validaciones[cell.column] );
-		        if (value == "") {
-		            return { result: false, message: localStorage.mensaje_campo_obligatorio };
-		        }
+		        var re = new RegExp(window.validaciones[cell.column]);
+			    if(value.match(re)=== null){
+			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
+			    }
 		        return true;
 		    },
 		});
 	}
-	console.log('datos_fila_nueva:');
-	console.log(window.datos_fila_nueva);
-	console.log('tipos_fila_nueva:');
-	console.log(window.tipos_fila_nueva);
-	console.log('columnas:');
-	console.log(window.columnas_grid);
-	console.log('Validaciones:');
-	console.log(window.validaciones);
+	//console.log('datos_fila_nueva:');
+	//console.log(window.datos_fila_nueva);
+	//console.log('tipos_fila_nueva:');
+	//console.log(window.tipos_fila_nueva);
+	//console.log('columnas:');
+	//console.log(window.columnas_grid);
+	//console.log('Validaciones:');
+	//console.log(window.validaciones);
 
 	//crea el html de la grid
 	var tabla = '<div style="margin-left: 10px; float: left;">\
