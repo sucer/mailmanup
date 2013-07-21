@@ -255,13 +255,6 @@ function mostrarGrid(evento){
 			"text": window.arrCampos[c].campo,
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
-			"validation": function(cell, value){
-			    if(value != ""){
-			        return false;
-			    }else{
-      	  			return true;
-      	  		}
-          	},
 		});
 	}
 	console.log('datos_fila_nueva:');
