@@ -170,7 +170,7 @@ function mostrarCamposaDefinir(evento){
 				';
 		$('#campos_a_definir').html(html);
 		//primer campo telefono
-		$('#tipo_campo_1').val(localStorage.id_atributo_telefono+'_textbox');
+		$('#tipo_campo_1').val(localStorage.id_atributo_telefono+'_textbox_n');
 		//evento del boton
 		$('#btn_guardar_definicion').on('click',validarDefinicionCampos);
 	}else{
