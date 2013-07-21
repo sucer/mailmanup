@@ -44,7 +44,7 @@ class Datos_Iniciales {
 				array(
 				'tipo_atributo' => 'hora',
 	 			'validacion' => '^[0-9]{2}:[0-9]{2}$',
-	 			'tipo_jqxgrid' => 'datetimeinput',
+	 			'tipo_jqxgrid' => 'textbox',
 	 			'formato' => 'HH:mm',
 				),
 			)
