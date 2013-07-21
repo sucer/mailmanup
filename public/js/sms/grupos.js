@@ -257,7 +257,7 @@ function mostrarGrid(evento){
 			"validation": function(cell, value){
 				    console.log(c);
 				    var re = new RegExp(window.arrCampos[c].validacion);
-				    if(value.match(re)===null){
+				    if(value.match(re)=== null){
 				        alert('el formato no es valido');
 				        return false;
 				    }else{
