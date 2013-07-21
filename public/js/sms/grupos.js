@@ -229,7 +229,7 @@ function validarDefinicionCampos(evento){
 				formato:$('#'+'tipo_campo_'+i).val().split('_')[2],
 			});
 			//Arreglo de validaciones Validaciones
-			window.validaciones[$('#'+'campo_'+i).val()] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title;
+			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title;
 		}
 	}
 	//oculto la seccion de creacion de campos
