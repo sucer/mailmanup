@@ -17,7 +17,7 @@ class Ajax_Grupos_Controller extends Base_Controller {
 	}
 	public function action_tipos(){
     	//retorna los option del select de tipos
-		$tipos = TipoAtributo::all()->orderBy('id_tipo_atributo','asc');
+		$tipos = TipoAtributo::orderBy('id_tipo_atributo','asc')->get();
 		$arrTipos = array();
 		$html='<option value="-1" >'.__('grupos.seleccione-un-tipo-atributo').'</option>';
 		foreach ($tipos as $tipo) {
