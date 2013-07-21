@@ -221,7 +221,6 @@ function validarDefinicionCampos(evento){
 				mostrarMensaje(localStorage.mensaje_error_tipo_campo);
 				return false;
 			}
-			cerrarMensaje();
 			window.arrCampos.push( { 
 				campo: $('#'+'campo_'+i).val(),
 				tipo: $('#'+'tipo_campo_'+i).val().split('_')[1],
@@ -255,9 +254,8 @@ function mostrarGrid(evento){
 			"type": 'string',
 		});
 		//carga las opciones de entrada para cada campo
-		var expresion_regular = window.arrCampos[c].validacion;
 		window.columnas_grid.push({
-			expresion: expresion_regular,
+			expresion: window.arrCampos[c].validacion,
 			posicion:c,
 			text: window.arrCampos[c].campo,
 			datafield: convertirNombreVariable(window.arrCampos[c].campo),
@@ -266,22 +264,25 @@ function mostrarGrid(evento){
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
-		        var re = new RegExp(window.validaciones[cell.column]);
-			    if(value.match(re)=== null){
+				console.log('Validacion: ');
+				console.log( window.validaciones[cell.column] );
+		        var re = new RegExp( window.validaciones[cell.column]);
+			    console.log(re);
+			    if(value.match(re) === null){
 			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
 			    }
 		        return true;
 		    },
 		});
 	}
-	//console.log('datos_fila_nueva:');
-	//console.log(window.datos_fila_nueva);
-	//console.log('tipos_fila_nueva:');
-	//console.log(window.tipos_fila_nueva);
-	//console.log('columnas:');
-	//console.log(window.columnas_grid);
-	//console.log('Validaciones:');
-	//console.log(window.validaciones);
+	console.log('datos_fila_nueva:');
+	console.log(window.datos_fila_nueva);
+	console.log('tipos_fila_nueva:');
+	console.log(window.tipos_fila_nueva);
+	console.log('columnas:');
+	console.log(window.columnas_grid);
+	console.log('Validaciones:');
+	console.log(window.validaciones);
 
 	//crea el html de la grid
 	var tabla = '<div style="margin-left: 10px; float: left;">\
