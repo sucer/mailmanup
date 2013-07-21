@@ -25,7 +25,7 @@ class Datos_Iniciales {
 				),
 				array(
 				'tipo_atributo' => 'fecha',
-	 			'validacion' => '^[0-3]{1}[0-9]{1}\/[0-1]{1}[0-9]{1}\/[0-9]{4}$',
+	 			'validacion' => '^[0-9]{4}\-[0-1]{1}[0-9]{1}\-[0-3]{1}[0-9]{1}$',
 	 			'tipo_jqxgrid' => 'datetimeinput',
 	 			'formato' => 'yyyy-MM-dd',
 				),
