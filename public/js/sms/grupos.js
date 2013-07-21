@@ -262,6 +262,8 @@ function mostrarGrid(evento){
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
+		        console.log('celda');
+		        console.log(cell);
 		        if (value == "") {
 		            return { result: false, message: localStorage.mensaje_campo_obligatorio };
 		        }
