@@ -306,6 +306,10 @@ function mostrarGrid(evento){
 	            </div>\
 				<div class="row-fluid" id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
+			        <div style="font-size: 12px; font-family: Verdana, Geneva, sans-serif; margin-top: 30px;">\
+                		<div id="cellbegineditevent"></div>\
+                 		<div style="margin-top: 10px;" id="cellendeditevent"></div>\
+          			</div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);
 
