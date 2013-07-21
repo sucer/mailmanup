@@ -203,7 +203,7 @@ function adicionarCampo(evento){
 function eliminarCampo(i){
 	if(confirm(localStorage.mensaje_confirmacion_eliminacion_campo)){
 		$('#div_campo_'+i).remove();
-		$('#numero_campos').val($('#numero_campos').val()-1);
+		$('#numero_campos').val( parseInt($('#numero_campos').val()) - 1);
 	}
 }
 
@@ -266,7 +266,7 @@ function mostrarGrid(evento){
 			validation: function (cell, value) {
 				console.log('celda:');
 				console.log(cell);
-				
+
 				console.log('Validacion:');
 				console.log( window.validaciones[cell.column] );
 
@@ -294,20 +294,16 @@ function mostrarGrid(evento){
 	console.log(window.validaciones);
 
 	//crea el html de la grid
-	var tabla = '<div style="margin-left: 10px; float: left;">\
-		            <div>\
+	var tabla = '<div style="margin:0.2em;">\
+		            <div style="margin: 0.3em; float:left;">\
 		                <input id="addrowbutton" type="button" value="Agregar Fila" />\
 		            </div>\
-		            <div style="margin-top: 10px;">\
+		            <div style="margin: 0.3em; float:left;">\
 		                <input id="deleterowbutton" type="button" value="Borrar fila" />\
 		            </div>\
 	            </div>\
 				<div id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
-			        <div style="font-size: 12px; font-family: Verdana, Geneva, sans-serif; margin-top: 30px;">\
-			            <div id="cellbegineditevent"></div>\
-			            <div style="margin-top: 10px;" id="cellendeditevent"></div>\
-			       </div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);
 
@@ -319,7 +315,6 @@ function mostrarGrid(evento){
             console.log('guardar en el servidor');
             console.log(rowdata);
             commit(true);
-
         },
         addrow: function (rowid, rowdata, position, commit) {
             console.log('adicionando fila');
@@ -346,17 +341,9 @@ function mostrarGrid(evento){
         theme: 'bootstrap',
         editable: true,
         sortable: true,
+        autoheight: true,
         selectionmode: 'singlerow',
         columns: window.columnas_grid,
-    });
-
-    $("#jqxgrid").on('cellbeginedit', function (event) {
-        var args = event.args;
-        $("#cellbegineditevent").text("Event Type: cellbeginedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
-    });
-    $("#jqxgrid").on('cellendedit', function (event) {
-        var args = event.args;
-        $("#cellendeditevent").text("Event Type: cellendedit, Column: " + args.datafield + ", Row: " + (1 + args.rowindex) + ", Value: " + args.value);
     });
 
     $("#addrowbutton").jqxButton({ theme: 'bootstrap' });
@@ -374,14 +361,3 @@ function mostrarGrid(evento){
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
