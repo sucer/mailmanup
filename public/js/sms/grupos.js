@@ -8,6 +8,8 @@ var arrCampos = [];
 		  "validacion": '.*',
 		}
 	] */
+//varible de validaciones
+var validaciones ={};	
 //variable global con los datos de la primera fila que van vacios
 var datos_fila_nueva={};
 //tipos de los campos de la fila nueva
@@ -226,6 +228,8 @@ function validarDefinicionCampos(evento){
 				validacion:$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title, 
 				formato:$('#'+'tipo_campo_'+i).val().split('_')[2],
 			});
+			//Arreglo de validaciones Validaciones
+			window.validaciones[$('#'+'campo_'+i).val()] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title;
 		}
 	}
 	//oculto la seccion de creacion de campos
@@ -264,6 +268,7 @@ function mostrarGrid(evento){
 			validation: function (cell, value) {
 		        console.log('celda');
 		        console.log(cell);
+		        console.log( window.validaciones[cell.column] );
 		        if (value == "") {
 		            return { result: false, message: localStorage.mensaje_campo_obligatorio };
 		        }
@@ -277,6 +282,8 @@ function mostrarGrid(evento){
 	console.log(window.tipos_fila_nueva);
 	console.log('columnas:');
 	console.log(window.columnas_grid);
+	console.log('Validaciones:');
+	console.log(window.validaciones);
 
 	//crea el html de la grid
 	var tabla = '<div style="margin-left: 10px; float: left;">\
