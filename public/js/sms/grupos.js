@@ -16,7 +16,8 @@ var tipos_fila_nueva=[];
 var columnas_grid=[];
 //variable global de numero de campos
 var numero_campos = 0;
-
+//ancho de la grid
+var width_grid = 680;
 //Funcion que se ejecuta cuando la pagina carga
 $(document).on("ready", inicioGrupos);
 
@@ -220,9 +221,10 @@ function validarDefinicionCampos(evento){
 			}
 			cerrarMensaje();
 			window.arrCampos.push( { 
-				"campo": $('#'+'campo_'+i).val(),
-				"tipo": $('#'+'tipo_campo_'+i).val().split('_')[1],
-				"validacion":$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title 
+				campo: $('#'+'campo_'+i).val(),
+				tipo: $('#'+'tipo_campo_'+i).val().split('_')[1],
+				validacion:$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title, 
+				formato:$('#'+'tipo_campo_'+i).val().split('_')[2],
 			});
 		}
 	}
@@ -237,6 +239,7 @@ function validarDefinicionCampos(evento){
 function mostrarGrid(evento){
 	console.log('arrCampos');
 	console.log(window.arrCampos);
+	var w = parseInt(window.width_grid/window.numero_campos);
 
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
@@ -250,11 +253,20 @@ function mostrarGrid(evento){
 		//carga las opciones de entrada para cada campo
 		var expresion_regular = window.arrCampos[c].validacion;
 		window.columnas_grid.push({
-			"expresion": expresion_regular,
-			"posicion":c,
-			"text": window.arrCampos[c].campo,
-			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
-			"columntype": window.arrCampos[c].tipo,
+			expresion: expresion_regular,
+			posicion:c,
+			text: window.arrCampos[c].campo,
+			datafield: convertirNombreVariable(window.arrCampos[c].campo),
+			columntype: window.arrCampos[c].tipo,
+			cellsformat: window.arrCampos[c].formato,
+			width: w,
+			resizable: true,
+			validation: function (cell, value) {
+		        if (value != "") {
+		            return { result: false, message: localStorage.mensaje_campo_obligatorio };
+		        }
+		        return true;
+		    },
 		});
 	}
 	console.log('datos_fila_nueva:');
@@ -312,7 +324,7 @@ function mostrarGrid(evento){
     var dataAdapter = new $.jqx.dataAdapter(source);
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid({
-        width: 680,
+        width: window.width_grid,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,

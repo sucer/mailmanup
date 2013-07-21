@@ -25,4 +25,6 @@ return array(
 	'adicionar-campo' => 'Add field',
 	'mensaje-confirmacion-eliminacion-campo'=> 'Are you sure you want to delete the field?',
 	'telefono'=>'Mobile Phone',
+	'mensaje-campo-obligatorio' => 'This field is required',
+
 );

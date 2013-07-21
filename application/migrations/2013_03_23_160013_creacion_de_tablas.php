@@ -90,6 +90,7 @@ class Creacion_De_Tablas {
 		    $table->text('tipo_atributo');
 		    $table->text('validacion');
 		    $table->text('tipo_jqxgrid');
+		    $table->text('formato');
 		});
 
 		Schema::create('atributo', function($table){

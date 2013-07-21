@@ -21,7 +21,7 @@ class Ajax_Grupos_Controller extends Base_Controller {
 		$arrTipos = array();
 		$html='<option value="-1" >'.__('grupos.seleccione-un-tipo-atributo').'</option>';
 		foreach ($tipos as $tipo) {
-			$html.='<option value="'.$tipo->id_tipo_atributo.'_'.$tipo->tipo_jqxgrid.'" title="'.$tipo->validacion.'">'.__('grupos.'.$tipo->tipo_atributo).'</option>';
+			$html.='<option value="'.$tipo->id_tipo_atributo.'_'.$tipo->tipo_jqxgrid.'_'.$tipo->formato.'" title="'.$tipo->validacion.'">'.__('grupos.'.$tipo->tipo_atributo).'</option>';
 		}		
 		return $html;
 	}

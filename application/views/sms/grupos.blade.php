@@ -42,6 +42,7 @@
 	localStorage.mensaje_confirmacion_eliminacion_campo= '{{__("grupos.mensaje-confirmacion-eliminacion-campo")}}';
 	localStorage.telefono = '{{__("grupos.telefono")}}';
 	localStorage.id_atributo_telefono = {{ Config::get('mailmanup.id_atributo_telefono') }};
+	localStorage.mensaje_campo_obligatorio = '{{__("grupos.mensaje-campo-obligatorio")}}';
 </script>
 @endsection
 
