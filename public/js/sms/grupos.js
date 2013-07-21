@@ -251,7 +251,7 @@ function mostrarGrid(evento){
 		//carga los tipos todos string
 		window.tipos_fila_nueva.push({
 			"name": convertirNombreVariable(window.arrCampos[c].campo),
-			"type": 'string',
+			"type": 'date',
 		});
 		//carga las opciones de entrada para cada campo
 		window.columnas_grid.push({
