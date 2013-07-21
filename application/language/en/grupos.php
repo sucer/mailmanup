@@ -27,5 +27,7 @@ return array(
 	'telefono'=>'Mobile Phone',
 	'mensaje-campo-obligatorio' => 'This field is required',
 	'hora' => 'Time',
+	'agregar-fila' => 'Add row',
+	'borrar-fila' => 'Delete row',
 
 );

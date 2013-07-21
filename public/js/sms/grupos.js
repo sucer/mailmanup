@@ -294,15 +294,15 @@ function mostrarGrid(evento){
 	console.log(window.validaciones);
 
 	//crea el html de la grid
-	var tabla = '<div style="margin:0.2em;">\
+	var tabla = '<div class="row-fluid" style="margin:0.2em;">\
 		            <div style="margin: 0.3em; float:left;">\
-		                <input id="addrowbutton" type="button" value="Agregar Fila" />\
+		                <input id="addrowbutton" type="button" value="'+localStorage.add_fila+'" />\
 		            </div>\
 		            <div style="margin: 0.3em; float:left;">\
-		                <input id="deleterowbutton" type="button" value="Borrar fila" />\
+		                <input id="deleterowbutton" type="button" value="'+localStorage.delete_fila+'" />\
 		            </div>\
 	            </div>\
-				<div id="jqxWidget">\
+				<div class="row-fluid" id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);

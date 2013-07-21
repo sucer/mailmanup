@@ -43,6 +43,8 @@
 	localStorage.telefono = '{{__("grupos.telefono")}}';
 	localStorage.id_atributo_telefono = {{ Config::get('mailmanup.id_atributo_telefono') }};
 	localStorage.mensaje_campo_obligatorio = '{{__("grupos.mensaje-campo-obligatorio")}}';
+	localStorage.add_fila = '{{__("grupos.agregar-fila")}}';
+	localStorage.delete_fila = '{{__("grupos.borrar-fila")}}';
 </script>
 @endsection
 

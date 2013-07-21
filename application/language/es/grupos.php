@@ -27,5 +27,6 @@ return array(
 	'telefono'=>'Celular',
 	'mensaje-campo-obligatorio' => 'Este campo es requerido',
 	'hora' => 'Hora',
-
+	'agregar-fila' => 'Agregar Fila',
+	'borrar-fila' => 'Borrar fila',
 );
