@@ -260,7 +260,6 @@ function mostrarGrid(evento){
 			text: window.arrCampos[c].campo,
 			datafield: convertirNombreVariable(window.arrCampos[c].campo),
 			columntype: window.arrCampos[c].tipo,
-			cellsformat: window.arrCampos[c].formato,
 			width: w,
 			resizable: true,
 			validation: function (cell, value) {
@@ -276,11 +275,12 @@ function mostrarGrid(evento){
 			    console.log('valor');
 			    console.log(value);
 
-			    if(value.match(re) === null){
+			    if( value.match(re) === null ){
+			    	console.log('no cumple con le formato');
 			    	return { result: false, message: localStorage.mensaje_campo_obligatorio };
-			    }else{
-		        	return true;
-		        }
+			    }
+			    console.log('Formato ok');
+		        return true;
 		    },
 		});
 	}
