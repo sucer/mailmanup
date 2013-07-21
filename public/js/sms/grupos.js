@@ -256,20 +256,14 @@ function mostrarGrid(evento){
 			"datafield": convertirNombreVariable(window.arrCampos[c].campo),
 			"columntype": window.arrCampos[c].tipo,
 			"validation": function(cell, value){
-				    console.log(expresion_regular);
-				    var re = new RegExp(expresion_regular);
-				    if(value.match(re)=== null){
-				        alert('el formato no es valido');
-				        return false;
-				    }else{
-          	  			console.log('el formato es valido');
-          	  			return true;
-          	  		}
-          	  		
+			    if(value != ""){
+			        return false;
+			    }else{
+      	  			return true;
+      	  		}
           	},
 		});
 	}
-
 	console.log('datos_fila_nueva:');
 	console.log(window.datos_fila_nueva);
 	console.log('tipos_fila_nueva:');
