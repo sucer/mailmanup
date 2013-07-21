@@ -262,6 +262,7 @@ function mostrarGrid(evento){
 			columntype: window.arrCampos[c].tipo,
 			width: w,
 			resizable: true,
+			cellsformat: '',
 			validation: function (cell, value) {
 				console.log('celda:');
 				console.log(cell);
