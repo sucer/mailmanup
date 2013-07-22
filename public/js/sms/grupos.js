@@ -230,7 +230,7 @@ function validarDefinicionCampos(evento){
 				formato:$('#'+'tipo_campo_'+i).val().split('_')[2],
 			});
 			//Arreglo de validaciones Validaciones
-			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title;
+			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title+'#'+$('#'+'tipo_campo_'+i).val().split('_')[1];
 		}
 	}
 	//oculto la seccion de creacion de campos
@@ -270,16 +270,16 @@ function mostrarGrid(evento){
 				console.log(cell);
 
 				console.log('Validacion:');
-				console.log( window.validaciones[cell.column] );
+				console.log( window.validaciones[cell.column].split('#')[0] );
 
-		        var re = new RegExp( window.validaciones[cell.column]);
+		        var re = new RegExp( window.validaciones[cell.column].split('#')[0]);
 			    console.log(re);
 			    
 			    console.log('valor');
 			    console.log(value);
 
 			    if( value.match(re) === null ){
-					return { result: false, message: localStorage.mensaje_campo_obligatorio };			    
+					return { result: false, message: localStorage["mensaje_"+window.validaciones[cell.column].split('#')[1]] };
 				}
 			    console.log('Formato ok');
 		        return true;

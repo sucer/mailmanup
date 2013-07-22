@@ -45,6 +45,13 @@
 	localStorage.mensaje_campo_obligatorio = '{{__("grupos.mensaje-campo-obligatorio")}}';
 	localStorage.add_fila = '{{__("grupos.agregar-fila")}}';
 	localStorage.delete_fila = '{{__("grupos.borrar-fila")}}';
+	localStorage.mensaje_correo = '{{__("grupos.mensaje-correo")}}';
+	localStorage.mensaje_celular = '{{__("grupos.mensaje-celular")}}';
+	localStorage.mensaje_fecha = '{{__("grupos.mensaje-fecha")}}';
+	localStorage.mensaje_numero = '{{__("grupos.mensaje-numero")}}';
+	localStorage.mensaje_texto = '{{__("grupos.mensaje-texto")}}';
+	localStorage.mensaje_hora = '{{__("grupos.mensaje-hora")}}';
+
 </script>
 @endsection
 

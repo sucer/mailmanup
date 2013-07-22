@@ -29,4 +29,11 @@ return array(
 	'hora' => 'Hora',
 	'agregar-fila' => 'Agregar Fila',
 	'borrar-fila' => 'Borrar fila',
+	'mensaje-correo' =>'Debe ingresar un correo válido',
+	'mensaje-celular' => 'Debe ingresar un numero de 10 digitos',
+	'mensaje-fecha' => 'Debe ingresar una fecha así: yyyy-mm-dd año de 4 digitos, mes de 2 digitos, dia de 2 digitos.',
+	'mensaje-numero' => 'Debe ingresar un valor númerico',
+	'mensaje-texto' => 'El campo es requerido',
+	'mensaje-hora' => 'Debe ingresar la hora así: HH:MM hora de 2 digitos, minuto de 2 digitos.',
+
 );

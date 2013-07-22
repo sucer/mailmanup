@@ -29,5 +29,11 @@ return array(
 	'hora' => 'Time',
 	'agregar-fila' => 'Add row',
 	'borrar-fila' => 'Delete row',
+	'mensaje-correo' =>'You must enter a valid email',
+	'mensaje-celular' => 'You must enter a 10-digit number',
+	'mensaje-fecha' => 'You must enter a date like: yyyy-mm-dd 4 digit year, 2 digit month, 2 digit day.',
+	'mensaje-numero' => 'You must enter a numeric value',
+	'mensaje-texto' => 'The field is required',
+	'mensaje-hora' => 'Must enter the time like this: HH: MM 2 digit hour, 2 digit minute.',
 
 );
