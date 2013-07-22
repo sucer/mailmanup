@@ -280,7 +280,7 @@ function mostrarGrid(evento){
 			    console.log('mensaje: ');
 			    console.log(String("mensaje_"+window.validaciones[cell.column].split('#')[1]));
 			    console.log( localStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1]) ]);
-			    var 
+			    
 			    if( value.match(re) === null ){
 					return { result: false, message: localStorage[ String("mensaje_"+window.validaciones[cell.column].split('#')[1] ) ] };
 				}
