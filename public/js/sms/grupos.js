@@ -278,8 +278,10 @@ function mostrarGrid(evento){
 			    console.log('valor');
 			    console.log(value);
 
+			    console.log(ocalStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1])]);
+
 			    if( value.match(re) === null ){
-					return { result: false, message: localStorage["mensaje_"+window.validaciones[cell.column].split('#')[1]] };
+					return { result: false, message: localStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1])] };
 				}
 			    console.log('Formato ok');
 		        return true;
