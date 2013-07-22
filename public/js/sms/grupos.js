@@ -242,11 +242,13 @@ function validarDefinicionCampos(evento){
 }
 
 //Funcion que limpia la fila nueva
-function iniciarFilaNueva(){
+function getFilaNueva(){
+	var datos={};
 	for (i in window.arrCampos){
 		//carga la fila nueva con valores vacios
-		window.datos_fila_nueva[ window.arrCampos[i].campo ] ='';
+		datos[ window.arrCampos[i].campo ] ='';
 	}
+	return datos;
 }
 
 function mostrarGrid(evento){
@@ -363,8 +365,7 @@ function mostrarGrid(evento){
 	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
 	// create new row.
     $("#addrowbutton").on('click', function () {
-        iniciarFilaNueva();
-        var commit = $("#jqxgrid").jqxGrid('addrow', null, window.datos_fila_nueva);
+        var commit = $("#jqxgrid").jqxGrid('addrow', null, getFilaNueva());
     });
     $("#deleterowbutton").on('click', function(){
         var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
