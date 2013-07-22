@@ -241,6 +241,14 @@ function validarDefinicionCampos(evento){
 	mostrarGrid();
 }
 
+//Funcion que limpia la fila nueva
+function iniciarFilaNueva(){
+	for (i in window.arrCampos){
+		//carga la fila nueva con valores vacios
+		window.datos_fila_nueva[ window.arrCampos[i].campo ] ='';
+	});
+}
+
 function mostrarGrid(evento){
 	console.log('arrCampos');
 	console.log(window.arrCampos);
@@ -355,6 +363,7 @@ function mostrarGrid(evento){
 	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
 	// create new row.
     $("#addrowbutton").on('click', function () {
+        iniciarFilaNueva();
         var commit = $("#jqxgrid").jqxGrid('addrow', null, window.datos_fila_nueva);
     });
     $("#deleterowbutton").on('click', function(){
