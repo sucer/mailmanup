@@ -51,6 +51,7 @@
 	localStorage.mensaje_numero = '{{__("grupos.mensaje-numero")}}';
 	localStorage.mensaje_texto = '{{__("grupos.mensaje-texto")}}';
 	localStorage.mensaje_hora = '{{__("grupos.mensaje-hora")}}';
+	localStorage.confirm_delete = '{{__("grupos.confirm-delete")}}';
 
 </script>
 @endsection

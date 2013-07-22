@@ -35,5 +35,6 @@ return array(
 	'mensaje-numero' => 'You must enter a numeric value',
 	'mensaje-texto' => 'The field is required',
 	'mensaje-hora' => 'Must enter the time like this: HH: MM 2 digit hour, 2 digit minute.',
+	'confirm-delete' => 'Are you sure you want to delete the row?',
 
 );
