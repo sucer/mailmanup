@@ -174,7 +174,7 @@ function mostrarCamposaDefinir(evento){
 				';
 		$('#campos_a_definir').html(html);
 		//primer campo telefono
-		$('#tipo_campo_1').val(localStorage.id_atributo_telefono+'_textbox_');
+		$('#tipo_campo_1').val(localStorage.id_atributo_telefono+'_textbox_celular');
 		//evento del boton
 		$('#btn_guardar_definicion').on('click',validarDefinicionCampos);
 	}else{
@@ -227,10 +227,10 @@ function validarDefinicionCampos(evento){
 				campo: $('#'+'campo_'+i).val(),
 				tipo: $('#'+'tipo_campo_'+i).val().split('_')[1],
 				validacion:$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title, 
-				formato:$('#'+'tipo_campo_'+i).val().split('_')[2],
+				tipo_atributo:$('#'+'tipo_campo_'+i).val().split('_')[2],
 			});
 			//Arreglo de validaciones Validaciones
-			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title+'#'+$('#'+'tipo_campo_'+i).val().split('_')[1];
+			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title+'#'+$('#'+'tipo_campo_'+i).val().split('_')[2];
 		}
 	}
 	//oculto la seccion de creacion de campos
@@ -264,7 +264,6 @@ function mostrarGrid(evento){
 			columntype: window.arrCampos[c].tipo,
 			width: w,
 			resizable: true,
-			cellsformat: window.arrCampos[c].formato,
 			validation: function (cell, value) {
 				console.log('celda:');
 				console.log(cell);
@@ -279,8 +278,9 @@ function mostrarGrid(evento){
 			    console.log(value);
 			    
 			    console.log('mensaje: ');
+			    console.log(String("mensaje_"+window.validaciones[cell.column].split('#')[1]));
 			    console.log( localStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1]) ]);
-
+			    var 
 			    if( value.match(re) === null ){
 					return { result: false, message: localStorage[ String("mensaje_"+window.validaciones[cell.column].split('#')[1] ) ] };
 				}
