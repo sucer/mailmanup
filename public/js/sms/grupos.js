@@ -246,7 +246,7 @@ function iniciarFilaNueva(){
 	for (i in window.arrCampos){
 		//carga la fila nueva con valores vacios
 		window.datos_fila_nueva[ window.arrCampos[i].campo ] ='';
-	});
+	}
 }
 
 function mostrarGrid(evento){
