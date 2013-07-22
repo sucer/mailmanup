@@ -328,7 +328,7 @@ function mostrarGrid(evento){
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             console.log('guardar en el servidor');
-            onsole.log(rowid);
+            console.log(rowid);
             console.log(rowdata);
             console.log(commit);
             //hacer llamado ajax
