@@ -328,21 +328,20 @@ function mostrarGrid(evento){
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
             console.log('guardar en el servidor');
+            onsole.log(rowid);
             console.log(rowdata);
+            console.log(commit);
+            //hacer llamado ajax
             commit(true);
         },
         addrow: function (rowid, rowdata, position, commit) {
-            console.log('adicionando fila');
-            console.log(rowid);
-            console.log(rowdata);
-            console.log(position);
-            console.log(commit);
             commit(true);
         },
         deleterow: function (rowid, commit) {
 			console.log('adicionando fila');
             console.log(rowid);
             console.log(commit);
+            //hacer llamado ajax
             commit(true);
         },
         datafields: window.tipos_fila_nueva,
