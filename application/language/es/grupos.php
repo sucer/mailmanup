@@ -34,6 +34,6 @@ return array(
 	'mensaje-fecha' => 'Debe ingresar una fecha así: yyyy-mm-dd año de 4 digitos, mes de 2 digitos, dia de 2 digitos.',
 	'mensaje-numero' => 'Debe ingresar un valor númerico',
 	'mensaje-texto' => 'El campo es requerido',
-	'mensaje-hora' => 'Debe ingresar la hora así: HH:MM hora de 2 digitos, minuto de 2 digitos.',
+	'mensaje-hora' => 'Debe ingresar la hora así: HH:MM hora de 2 digitos 24 horas, minuto de 2 digitos.',
 
 );
