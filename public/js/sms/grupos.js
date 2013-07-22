@@ -20,6 +20,8 @@ var columnas_grid=[];
 var numero_campos = 0;
 //ancho de la grid
 var width_grid = 680;
+//alto de la grid
+var height_grid = 300;
 //Funcion que se ejecuta cuando la pagina carga
 $(document).on("ready", inicioGrupos);
 
@@ -337,11 +339,11 @@ function mostrarGrid(evento){
     // initialize jqxGrid
     $("#jqxgrid").jqxGrid({
         width: window.width_grid,
+        height: window.height_grid,
         source: dataAdapter,
         theme: 'bootstrap',
         editable: true,
         sortable: true,
-        
         selectionmode: 'singlerow',
         columns: window.columnas_grid,
     });
