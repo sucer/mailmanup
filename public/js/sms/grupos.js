@@ -228,6 +228,7 @@ function validarDefinicionCampos(evento){
 				tipo: $('#'+'tipo_campo_'+i).val().split('_')[1],
 				validacion:$('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title, 
 				tipo_atributo:$('#'+'tipo_campo_'+i).val().split('_')[2],
+				id_tipo_atributo: $('#'+'tipo_campo_'+i).val().split('_')[0],
 			});
 			//Arreglo de validaciones Validaciones
 			window.validaciones[convertirNombreVariable($('#'+'campo_'+i).val())] = $('#'+'tipo_campo_'+i)[0][ $('#'+'tipo_campo_'+i)[0].selectedIndex ].title+'#'+$('#'+'tipo_campo_'+i).val().split('_')[2];
@@ -269,17 +270,36 @@ function guardarGrupo(){
 	});
 }
 //funcion que guarda los atributos de la base de datos
-function guardarAtributos(){
-
+function guardarAtributos(atributo,id_tipo_atributo,id_base_datos,num_campo){
+	//realiza el llamado ajax
+	$.ajax({
+	   type: "POST",
+	   url: localStorage.url_base_app_dominio+"/crear-atributo",
+	   dataType: "html",
+	   data: "atributo="+atributo+"&id_tipo_atributo="+id_tipo_atributo+"&id_base_datos="+id_base_datos,
+	   async: false,
+	   success: function(res){	
+       		if(res!="-1"){
+     			localStorage['id_atributo_'+num_campo]=res;
+     			console.log(localStorage['id_atributo_'+num_campo]);
+       		}
+       }
+	});
 }
 //funcion que muestra la grid
 function mostrarGrid(evento){
 	console.log('arrCampos');
 	console.log(window.arrCampos);
 	var w = parseInt(window.width_grid/window.numero_campos);
-
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
+		//guarda en la base de datos los atributos
+		guardarAtributos(
+				window.arrCampos[c].campo,
+				window.arrCampos[c].id_tipo_atributo,
+				localStorage.id_grupo,
+				c
+		);
 		//carga la fila nueva con valores vacios
 		window.datos_fila_nueva[ window.arrCampos[c].campo ] ='';
 		//carga los tipos todos string

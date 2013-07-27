@@ -35,6 +35,8 @@
 //http://cognos-univirtual.utp.edu.co/ajax/idioma/cambiar
 Route::controller('ajax.idioma');
 Route::controller('ajax.grupos');
+Route::controller('ajax.atributo');
+
 
 /*****************************************************/
 //Personalización de URL amigables
@@ -44,6 +46,7 @@ Route::post('/idioma-actual','ajax.idioma@actual');
 Route::any('/validar-nombre-grupo','ajax.grupos@validar');
 Route::any('/get-tipos','ajax.grupos@tipos');
 Route::any('/crear-grupo','ajax.grupos@crear');
+Route::any('/crear-atributo','ajax.atributo@crear');
 
 Route::any('/simple-sms','sms.enviar@index');
 Route::any('/plantillas','sms.plantillas@index');
