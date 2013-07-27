@@ -237,6 +237,8 @@ function validarDefinicionCampos(evento){
 	$('#seccion_campos').hide();
 	$('#btn_mostrar_campos').hide();
 	$('#btn_guardar_definicion').hide();
+	//llama a la funcion guardar
+	guardarGrupo();
 	//llama a la funcion que crea la grid dinamica para el ingreso de los datos de cada campo
 	mostrarGrid();
 }
@@ -260,6 +262,7 @@ function guardarGrupo(){
 	   success: function(res){	
        		if(res!="-1"){
      			localStorage.id_grupo=res;
+     			console.log(localStorage.id_grupo);
        		}
        }
 	});

@@ -33,7 +33,7 @@ class Ajax_Grupos_Controller extends Base_Controller {
     	if(Input::has("grupo")){
     		$arrayBaseDeDatos = array(
                                 'base_datos' =>Input::get("grupo"),
-                                'id_cliente' =>'1',
+                                'id_cliente' =>1,
                                 'fecha_creacion'=>date('Y-m-d H:i:s'),
                                 );
             $basededatos= new BaseDatos();
