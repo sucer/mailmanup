@@ -259,6 +259,7 @@ function guardarGrupo(){
 	   url: localStorage.url_base_app_dominio+"/crear-grupo",
 	   dataType: "html",
 	   data: "grupo="+$('#nombre_grupo').val(),
+	   async: false,
 	   success: function(res){	
        		if(res!="-1"){
      			localStorage.id_grupo=res;
@@ -267,7 +268,10 @@ function guardarGrupo(){
        }
 	});
 }
+//funcion que guarda los atributos de la base de datos
+function guardarAtributos(){
 
+}
 //funcion que muestra la grid
 function mostrarGrid(evento){
 	console.log('arrCampos');
