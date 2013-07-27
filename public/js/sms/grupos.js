@@ -264,7 +264,7 @@ function guardarGrupo(){
 	   success: function(res){	
        		if(res!="-1"){
      			localStorage.id_grupo=res;
-     			console.log(localStorage.id_grupo);
+     			console.log('id_base_datos: '+localStorage.id_grupo);
        		}
        }
 	});
@@ -281,15 +281,15 @@ function guardarAtributos(atributo,id_tipo_atributo,id_base_datos,num_campo){
 	   success: function(res){	
        		if(res!="-1"){
      			localStorage['id_atributo_'+num_campo]=res;
-     			console.log(localStorage['id_atributo_'+num_campo]);
+     			console.log('id_atributo_'+num_campo+': '+localStorage['id_atributo_'+num_campo]);
        		}
        }
 	});
 }
 //funcion que muestra la grid
 function mostrarGrid(evento){
-	console.log('arrCampos');
-	console.log(window.arrCampos);
+	//console.log('arrCampos');
+	//console.log(window.arrCampos);
 	var w = parseInt(window.width_grid/window.numero_campos);
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
@@ -320,36 +320,35 @@ function mostrarGrid(evento){
 				console.log('celda:');
 				console.log(cell);
 
-				console.log('Validacion:');
-				console.log( window.validaciones[cell.column].split('#')[0] );
+				//console.log('Validacion:');
+				//console.log( window.validaciones[cell.column].split('#')[0] );
 
 		        var re = new RegExp( window.validaciones[cell.column].split('#')[0]);
-			    console.log(re);
+			    //console.log(re);
 			    
 			    console.log('valor');
 			    console.log(value);
 			    
-			    console.log('mensaje: ');
-			    console.log(String("mensaje_"+window.validaciones[cell.column].split('#')[1]));
-			    console.log( localStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1]) ]);
+			    //console.log('mensaje: ');
+			    //console.log(String("mensaje_"+window.validaciones[cell.column].split('#')[1]));
+			    //console.log( localStorage[String("mensaje_"+window.validaciones[cell.column].split('#')[1]) ]);
 			    
 			    if( value.match(re) === null ){
 					return { result: false, message: localStorage[ String("mensaje_"+window.validaciones[cell.column].split('#')[1] ) ] };
 				}
-			    console.log('Formato ok');
+			    //console.log('Formato ok');
 		        return true;
 		    },
 		});
 	}
-	console.log('datos_fila_nueva:');
-	console.log(window.datos_fila_nueva);
-	console.log('tipos_fila_nueva:');
-	console.log(window.tipos_fila_nueva);
-	console.log('columnas:');
-	console.log(window.columnas_grid);
-	console.log('Validaciones:');
-	console.log(window.validaciones);
-
+	//console.log('datos_fila_nueva:');
+	//console.log(window.datos_fila_nueva);
+	//console.log('tipos_fila_nueva:');
+	//console.log(window.tipos_fila_nueva);
+	//console.log('columnas:');
+	//console.log(window.columnas_grid);
+	//console.log('Validaciones:');
+	//console.log(window.validaciones);
 	//crea el html de la grid
 	var tabla = '<div class="row-fluid" style="margin:0.2em;">\
 		            <div style="margin: 0.3em; float:left;">\
@@ -369,18 +368,23 @@ function mostrarGrid(evento){
         localdata: [window.datos_fila_nueva],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
-            console.log('guardar en el servidor');
-            console.log(rowid);
-            console.log(rowdata);
+            console.log('Guardar en el servidor');
+            console.log('rowid: '+rowid);
+            console.log('dato: '+rowdata);
+            console.log('commit');
             console.log(commit);
+            console.log('consultar la columna??? ');
+            //console.log(localStorage['id_atributo_'+]);
             //hacer llamado ajax
             commit(true);
         },
         addrow: function (rowid, rowdata, position, commit) {
+            console.log('Posicion');
+            console.log(position);
             commit(true);
         },
         deleterow: function (rowid, commit) {
-			console.log('adicionando fila');
+			console.log('Borrando la fila');
             console.log(rowid);
             console.log(commit);
             //hacer llamado ajax
@@ -401,13 +405,13 @@ function mostrarGrid(evento){
         selectionmode: 'singlerow',
         columns: window.columnas_grid,
     });
-
+	// Boton para crear nueva fila
     $("#addrowbutton").jqxButton({ theme: 'bootstrap' });
-	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
-	// create new row.
     $("#addrowbutton").on('click', function () {
         var commit = $("#jqxgrid").jqxGrid('addrow', null, getFilaNueva());
     });
+    //Boton para eliminar fila n
+	$("#deleterowbutton").jqxButton({ theme: 'bootstrap' });
     $("#deleterowbutton").on('click', function(){
         var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
         var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
