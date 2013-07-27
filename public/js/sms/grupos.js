@@ -270,7 +270,7 @@ function guardarGrupo(){
 	});
 }
 //funcion que guarda los atributos de la base de datos
-function guardarAtributos(atributo,id_tipo_atributo,id_base_datos,num_campo){
+function guardarAtributos(atributo,id_tipo_atributo,id_base_datos){
 	//realiza el llamado ajax
 	$.ajax({
 	   type: "POST",
@@ -280,8 +280,9 @@ function guardarAtributos(atributo,id_tipo_atributo,id_base_datos,num_campo){
 	   async: false,
 	   success: function(res){	
        		if(res!="-1"){
-     			localStorage['id_atributo_'+num_campo]=res;
-     			console.log('id_atributo_'+num_campo+': '+localStorage['id_atributo_'+num_campo]);
+       			var campo = convertirNombreVariable(atributo);
+     			localStorage['id_atributo_'+campo]=res;
+     			console.log('id_atributo_'+campo+': '+localStorage['id_atributo_'+campo]);
        		}
        }
 	});
@@ -297,8 +298,7 @@ function mostrarGrid(evento){
 		guardarAtributos(
 				window.arrCampos[c].campo,
 				window.arrCampos[c].id_tipo_atributo,
-				localStorage.id_grupo,
-				c
+				localStorage.id_grupo
 		);
 		//carga la fila nueva con valores vacios
 		window.datos_fila_nueva[ window.arrCampos[c].campo ] ='';
@@ -320,6 +320,8 @@ function mostrarGrid(evento){
 				console.log('celda:');
 				console.log(cell);
 
+				
+
 				//console.log('Validacion:');
 				//console.log( window.validaciones[cell.column].split('#')[0] );
 
@@ -335,6 +337,9 @@ function mostrarGrid(evento){
 			    
 			    if( value.match(re) === null ){
 					return { result: false, message: localStorage[ String("mensaje_"+window.validaciones[cell.column].split('#')[1] ) ] };
+				}else{
+					console.log('id_atributo: '+localStorage['id_atributo_'+cell.column] );
+					console.log('id_registro: '+cell.row);
 				}
 			    //console.log('Formato ok');
 		        return true;
@@ -379,7 +384,7 @@ function mostrarGrid(evento){
             commit(true);
         },
         addrow: function (rowid, rowdata, position, commit) {
-            console.log('Posicion');
+            console.log('Nueva Posicion:');
             console.log(position);
             commit(true);
         },
