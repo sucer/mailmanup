@@ -238,8 +238,10 @@ function validarDefinicionCampos(evento){
 	$('#seccion_campos').hide();
 	$('#btn_mostrar_campos').hide();
 	$('#btn_guardar_definicion').hide();
-	//llama a la funcion guardar
-	guardarGrupo();
+	//llama a la funcion crearGrupo
+	crearGrupo();
+	//crea el primer registro
+	crearRegistro(localStorage.id_base_datos,0);
 	//llama a la funcion que crea la grid dinamica para el ingreso de los datos de cada campo
 	mostrarGrid();
 }
@@ -253,8 +255,8 @@ function getFilaNueva(){
 	}
 	return datos;
 }
-//function guardar Grupo
-function guardarGrupo(){
+//function crea un  Grupo
+function crearGrupo(){
 	$.ajax({
 	   type: "POST",
 	   url: localStorage.url_base_app_dominio+"/crear-grupo",
@@ -263,14 +265,14 @@ function guardarGrupo(){
 	   async: false,
 	   success: function(res){	
        		if(res!="-1"){
-     			localStorage.id_grupo=res;
-     			console.log('id_base_datos: '+localStorage.id_grupo);
+     			localStorage.id_base_datos=res;
+     			console.log('id_base_datos: '+localStorage.id_base_datos);
        		}
        }
 	});
 }
-//funcion que guarda los atributos de la base de datos
-function guardarAtributos(atributo,id_tipo_atributo,id_base_datos){
+//funcion que crea el atributo enviado en la base de datos
+function crearAtributo(atributo,id_tipo_atributo,id_base_datos){
 	//realiza el llamado ajax
 	$.ajax({
 	   type: "POST",
@@ -287,6 +289,23 @@ function guardarAtributos(atributo,id_tipo_atributo,id_base_datos){
        }
 	});
 }
+//funcion que guarda el atributo enviado en la base de datos
+function crearRegistro(id_base_datos,fila){
+	//realiza el llamado ajax
+	$.ajax({
+	   type: "POST",
+	   url: localStorage.url_base_app_dominio+"/crear-registro",
+	   dataType: "html",
+	   data: "id_base_datos="+id_base_datos,
+	   async: false,
+	   success: function(res){	
+       		if(res!="-1"){
+     			localStorage['id_registro_'+fila]=res;
+     			console.log('id_registro_'+fila+': '+localStorage['id_registro_'+fila]);
+       		}
+       }
+	});
+}
 //funcion que muestra la grid
 function mostrarGrid(evento){
 	//console.log('arrCampos');
@@ -294,11 +313,11 @@ function mostrarGrid(evento){
 	var w = parseInt(window.width_grid/window.numero_campos);
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
-		//guarda en la base de datos los atributos
-		guardarAtributos(
+		//crea en la base de datos los atributos
+		crearAtributo(
 				window.arrCampos[c].campo,
 				window.arrCampos[c].id_tipo_atributo,
-				localStorage.id_grupo
+				localStorage.id_base_datos
 		);
 		//carga la fila nueva con valores vacios
 		window.datos_fila_nueva[ window.arrCampos[c].campo ] ='';
@@ -320,13 +339,7 @@ function mostrarGrid(evento){
 				console.log('celda:');
 				console.log(cell);
 
-				
-
-				//console.log('Validacion:');
-				//console.log( window.validaciones[cell.column].split('#')[0] );
-
 		        var re = new RegExp( window.validaciones[cell.column].split('#')[0]);
-			    //console.log(re);
 			    
 			    console.log('valor');
 			    console.log(value);
@@ -339,9 +352,9 @@ function mostrarGrid(evento){
 					return { result: false, message: localStorage[ String("mensaje_"+window.validaciones[cell.column].split('#')[1] ) ] };
 				}else{
 					console.log('id_atributo: '+localStorage['id_atributo_'+cell.column] );
-					console.log('id_registro: '+cell.row);
+					console.log('id_registro: '+localStorage['id_registro_'+cell.row]);
+					
 				}
-			    //console.log('Formato ok');
 		        return true;
 		    },
 		});
@@ -373,26 +386,17 @@ function mostrarGrid(evento){
         localdata: [window.datos_fila_nueva],
         datatype: "local",
         updaterow: function (rowid, rowdata, commit) {
-            console.log('Guardar en el servidor');
-            console.log('rowid: '+rowid);
-            console.log('dato: '+rowdata);
-            console.log('commit');
-            console.log(commit);
-            console.log('consultar la columna??? ');
-            //console.log(localStorage['id_atributo_'+]);
-            //hacer llamado ajax
             commit(true);
         },
         addrow: function (rowid, rowdata, position, commit) {
-            console.log('Nueva Posicion:');
-            console.log(position);
+            console.log('Adicionando fila: ');
+            console.log(rowid);
             commit(true);
         },
         deleterow: function (rowid, commit) {
 			console.log('Borrando la fila');
             console.log(rowid);
             console.log(commit);
-            //hacer llamado ajax
             commit(true);
         },
         datafields: window.tipos_fila_nueva,

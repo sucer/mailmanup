@@ -36,6 +36,7 @@
 Route::controller('ajax.idioma');
 Route::controller('ajax.grupos');
 Route::controller('ajax.atributo');
+Route::controller('ajax.registro');
 
 
 /*****************************************************/
@@ -47,6 +48,7 @@ Route::any('/validar-nombre-grupo','ajax.grupos@validar');
 Route::any('/get-tipos','ajax.grupos@tipos');
 Route::any('/crear-grupo','ajax.grupos@crear');
 Route::any('/crear-atributo','ajax.atributo@crear');
+Route::any('/crear-registro','ajax.registro@crear');
 
 Route::any('/simple-sms','sms.enviar@index');
 Route::any('/plantillas','sms.plantillas@index');
