@@ -250,7 +250,22 @@ function getFilaNueva(){
 	}
 	return datos;
 }
+//function guardar Grupo
+function guardarGrupo(){
+	$.ajax({
+	   type: "POST",
+	   url: localStorage.url_base_app_dominio+"/crear-grupo",
+	   dataType: "html",
+	   data: "grupo="+$('#nombre_grupo').val(),
+	   success: function(res){	
+       		if(res!="-1"){
+     			localStorage.id_grupo=res;
+       		}
+       }
+	});
+}
 
+//funcion que muestra la grid
 function mostrarGrid(evento){
 	console.log('arrCampos');
 	console.log(window.arrCampos);

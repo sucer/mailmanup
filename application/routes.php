@@ -43,6 +43,7 @@ Route::post('/cambiar-idioma','ajax.idioma@cambiar');
 Route::post('/idioma-actual','ajax.idioma@actual');
 Route::any('/validar-nombre-grupo','ajax.grupos@validar');
 Route::any('/get-tipos','ajax.grupos@tipos');
+Route::any('/crear-grupo','ajax.grupos@crear');
 
 Route::any('/simple-sms','sms.enviar@index');
 Route::any('/plantillas','sms.plantillas@index');

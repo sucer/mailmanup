@@ -2,6 +2,7 @@
 
 class Ajax_Grupos_Controller extends Base_Controller {
 
+	//función que valida el nombre del grupo para que sea unico
     public function action_validar(){
     	//valida que el nombre no exista
     	if(Input::has("grupo")){
@@ -15,6 +16,7 @@ class Ajax_Grupos_Controller extends Base_Controller {
 		}
 		return "false";
 	}
+
 	public function action_tipos(){
     	//retorna los option del select de tipos
 		$tipos = DB::table('tipo_atributo')->order_by('id_tipo_atributo','asc')->get();
@@ -25,4 +27,20 @@ class Ajax_Grupos_Controller extends Base_Controller {
 		}		
 		return $html;
 	}
+
+	public function action_crear(){
+    	
+    	if(Input::has("grupo")){
+    		$arrayBaseDeDatos = array(
+                                'base_datos' =>Input::get("grupo"),
+                                'id_cliente' =>'1',
+                                'fecha_creacion'=>date('Y-m-d H:i:s'),
+                                );
+            $basededatos= new BaseDatos();
+            $basededatos->fill($arrayBaseDeDatos);
+            $basededatos->save();
+            return $basededatos->id_base_datos;
+        }
+	}
+
 }
