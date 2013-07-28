@@ -22,6 +22,8 @@ var numero_campos = 0;
 var width_grid = 680;
 //alto de la grid
 var height_grid = 300;
+//ancho campos
+var ancho_campos=160;
 //Funcion que se ejecuta cuando la pagina carga
 $(document).on("ready", inicioGrupos);
 
@@ -327,7 +329,8 @@ function actualizarCelda(id_atributo,id_registro,valor){
 function mostrarGrid(evento){
 	//console.log('arrCampos');
 	//console.log(window.arrCampos);
-	var w = parseInt(window.width_grid/window.numero_campos);
+	//var w = parseInt(window.width_grid/window.numero_campos);
+	var w= window.ancho_campos;
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
 		//crea en la base de datos los atributos
