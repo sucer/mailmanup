@@ -330,7 +330,7 @@ function mostrarGrid(evento){
 	//console.log('arrCampos');
 	//console.log(window.arrCampos);
 	//var w = parseInt(window.width_grid/window.numero_campos);
-	var w= window.ancho_campos;
+	var w= parseInt(window.ancho_campos);
 	//recorro el arreglo de campos
 	for (c in window.arrCampos){
 		//crea en la base de datos los atributos
