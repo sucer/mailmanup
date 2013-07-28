@@ -306,6 +306,23 @@ function crearRegistro(id_base_datos,fila){
        }
 	});
 }
+//funcion que actualiza el valor de la celda
+function actualizarCelda(id_atributo,id_registro,valor){
+	//realiza el llamado ajax
+	$.ajax({
+	   type: "POST",
+	   url: localStorage.url_base_app_dominio+"/actualizar-celda",
+	   dataType: "html",
+	   data: "id_atributo="+id_atributo+"&id_registro="+id_registro+"&valor="+valor,
+	   async: false,
+	   success: function(res){	
+       		if(res!="-1"){
+     			localStorage['id_celda_'+id_registro+'_'+id_atributo]=res;
+     			console.log('id_celda_'+id_registro+'_'+id_atributo+': '+localStorage['id_celda_'+id_registro+'_'+id_atributo]);
+       		}
+       }
+	});
+}
 //funcion que muestra la grid
 function mostrarGrid(evento){
 	//console.log('arrCampos');
@@ -353,7 +370,7 @@ function mostrarGrid(evento){
 				}else{
 					console.log('id_atributo: '+localStorage['id_atributo_'+cell.column] );
 					console.log('id_registro: '+localStorage['id_registro_'+cell.row]);
-					
+					actualizarCelda(localStorage['id_atributo_'+cell.column],localStorage['id_registro_'+cell.row],value);
 				}
 		        return true;
 		    },
@@ -391,6 +408,8 @@ function mostrarGrid(evento){
         addrow: function (rowid, rowdata, position, commit) {
             console.log('Adicionando fila: ');
             console.log(rowid);
+            //crea el primer registro
+			crearRegistro(localStorage.id_base_datos,rowid);
             commit(true);
         },
         deleterow: function (rowid, commit) {
