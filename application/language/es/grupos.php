@@ -36,5 +36,6 @@ return array(
 	'mensaje-texto' => 'El campo es requerido',
 	'mensaje-hora' => 'Debe ingresar la hora así: HH:MM hora de 2 digitos 24 horas, minuto de 2 digitos.',
 	'confirm-delete' => '¿Está seguro que quiere borra la fila?',
+	'terminar' => 'Terminar',
 
 );

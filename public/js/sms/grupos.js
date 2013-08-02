@@ -21,7 +21,7 @@ var numero_campos = 0;
 //ancho de la grid
 var width_grid = 680;
 //alto de la grid
-var height_grid = 300;
+var height_grid = 250;
 //ancho campos
 var ancho_campos=160;
 //Funcion que se ejecuta cuando la pagina carga
@@ -398,9 +398,11 @@ function mostrarGrid(evento){
 	            </div>\
 				<div class="row-fluid" id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
-			    </div>';
+			    </div>
+			    <input id="finalizar" type="button" value="'+localStorage.terminar+'" />\
+			    ';
 	$('#tabla_grid').html(tabla);
-
+	$('#finalizar').on('click',termnar);
 	//fuente de datos
 	var source ={
         localdata: [window.datos_fila_nueva],
@@ -453,4 +455,8 @@ function mostrarGrid(evento){
 	        }
         }
     });
+}
+//funcion que termina 
+function terminar(evento){
+	document.location.href=localStorage.url_base_app_dominio;
 }

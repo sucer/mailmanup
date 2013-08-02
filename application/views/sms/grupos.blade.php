@@ -52,7 +52,7 @@
 	localStorage.mensaje_texto = '{{__("grupos.mensaje-texto")}}';
 	localStorage.mensaje_hora = '{{__("grupos.mensaje-hora")}}';
 	localStorage.confirm_delete = '{{__("grupos.confirm-delete")}}';
-
+	localStorage.terminar = '{{__("grupos.terminar")}}';
 </script>
 @endsection
 
