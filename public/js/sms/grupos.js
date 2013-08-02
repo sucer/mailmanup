@@ -395,11 +395,15 @@ function mostrarGrid(evento){
 		            <div style="margin: 0.3em; float:left;">\
 		                <input id="deleterowbutton" type="button" value="'+localStorage.delete_fila+'" />\
 		            </div>\
+		            <div style="margin: 0.3em; float:left;">\
+		                <input id="terminar" type="button" value="'+localStorage.terminar+'" />\
+		            </div>\
 	            </div>\
 				<div class="row-fluid" id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);
+	$('#terminar').on('click',terminar);
 	//fuente de datos
 	var source ={
         localdata: [window.datos_fila_nueva],
