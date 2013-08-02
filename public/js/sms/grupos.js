@@ -399,8 +399,9 @@ function mostrarGrid(evento){
 				<div class="row-fluid" id="jqxWidget">\
 			        <div id="jqxgrid"></div>\
 			    </div>\
-			    <input id="finalizar" type="button" value="'+localStorage.terminar+'" />\
-			    ';
+			    <div class="row-fluid" style="margin: 0.3em; float:left;">\
+			    	<input id="finalizar" type="button" value="'+localStorage.terminar+'" />\
+			    </div>';
 	$('#tabla_grid').html(tabla);
 	$('#finalizar').on('click',termnar);
 	//fuente de datos
