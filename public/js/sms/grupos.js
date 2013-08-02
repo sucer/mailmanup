@@ -403,6 +403,8 @@ function mostrarGrid(evento){
 			        <div id="jqxgrid"></div>\
 			    </div>';
 	$('#tabla_grid').html(tabla);
+
+	$("#terminar").jqxButton({ theme: 'bootstrap' });
 	$('#terminar').on('click',terminar);
 	//fuente de datos
 	var source ={
