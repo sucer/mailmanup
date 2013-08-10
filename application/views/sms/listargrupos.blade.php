@@ -34,7 +34,7 @@
 	</h2>
 	<div class="row-fluid">
 		<div class="span10">
-			<div>{{__('grupos.mensaje-cantidad-grupos')}}<span>{{ $grupos->getTotal() }}</span></div>
+			<div>{{__('grupos.mensaje-cantidad-grupos')}}<span>{{ $grupos->paginator->getTotal() }}</span></div>
 		</div>
 	</div>
 
