@@ -26,10 +26,6 @@
 {{ HTML::script('js/jqwidgets/jqxdatetimeinput.js') }}
 {{ HTML::script('js/jqwidgets/globalization/globalize.js') }}
 {{ HTML::script('js/jqwidgets/jqxgrid.edit.js') }}
-
-<script>
-	localStorage.mensaje_error_nombre_grupo='{{__("grupos.mensaje-nombre-grupo")}}';
-</script>
 @endsection
 
 @section('contenido')
@@ -38,7 +34,7 @@
 	</h2>
 	<div class="row-fluid">
 		<div class="span10">
-			<div>{{__('grupos.mensaje-cantidad-grupo')}}<span>total</span></div>
+			<div>{{__('grupos.mensaje-cantidad-grupos')}}<span>{{ $grupos->getTotal() }}</span></div>
 		</div>
 	</div>
 
