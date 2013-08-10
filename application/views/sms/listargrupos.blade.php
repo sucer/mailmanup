@@ -34,7 +34,7 @@
 	</h2>
 	<div class="row-fluid">
 		<div class="span10">
-			<div>{{__('grupos.mensaje-cantidad-grupos')}}<span>{{ count($grupos) }}</span></div>
+			<div>{{__('grupos.mensaje-cantidad-grupos')}} <span>{{ var_dump($grupos) }}</span></div>
 		</div>
 	</div>
 
