@@ -38,6 +38,8 @@ return array(
 	'confirm-delete' => 'Are you sure you want to delete the row?',
 	'terminar' => 'Finish','lista-grupos' => 'Group List',
 	'mensaje-cantidad-grupos' => 'Total Groups',
+	'enlace-crea-grupos' => 'New group',
+
 
 
 );

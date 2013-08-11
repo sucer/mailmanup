@@ -35,6 +35,9 @@
 	<div class="row-fluid">
 		<div class="span10">
 			<div>{{__('grupos.mensaje-cantidad-grupos')}} <span>{{ $grupos->total }}</span></div>
+			<div>
+				<a href="{{ URL::base() }}/crear-grupo/"> {{ __('grupos.enlace-crea-grupos') }} </a>
+			</div>
 		</div>
 	</div>
 
@@ -42,7 +45,9 @@
 		<div class="span10">
 			@forelse ($grupos->results as $grupo)
 				<div>
-					{{$grupo->base_datos}} {{Registro::where('id_base_datos','=',$grupo->id_base_datos)->count()}}
+					<a href="{{ URL::base() }}/actualizar-grupo/{{$grupo->id_base_datos}}">{{$grupo->base_datos}}</a>
+
+					{{Registro::where('id_base_datos','=',$grupo->id_base_datos)->count()}}
 				</div>
 			@empty
 				<div>

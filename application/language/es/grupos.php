@@ -39,5 +39,6 @@ return array(
 	'terminar' => 'Terminar',
 	'lista-grupos' => 'Lista de grupos',
 	'mensaje-cantidad-grupos' => 'Total de grupos creados',
+	'enlace-crea-grupos' => 'Crear grupo',
 
 );

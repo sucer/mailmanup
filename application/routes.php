@@ -54,9 +54,11 @@ Route::any('/actualizar-celda','ajax.celda@actualizar');
 
 Route::any('/simple-sms','sms.enviar@index');
 Route::any('/plantillas','sms.plantillas@index');
-Route::any('/grupos','sms.grupos@index');
-Route::any('/lista-grupos','sms.grupos@listar');
+Route::any('/grupos','sms.grupos@listar');
+Route::any('/actualizar-grupo/(:num)','sms.grupos@actualizar');
+Route::any('/crear-grupo','sms.grupos@crear');
 Route::any('/avanzado-sms','sms.avanzado@index');
+
 Route::any('/git-update',function(){
 	ini_set('memory_limit','32M');
 	@set_time_limit(10000);
