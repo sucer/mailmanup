@@ -9,7 +9,7 @@
  define( SITE_URL , 'http://sevenstartups.com' );
  define( SITE_PATH, '/login' );
  define( COOKIE_PREFIX, 'mailmanup_' );
- define( COOKIE_KEY , 'm41lm4nup' );
+ define( COOKIE_KEY , 'auth_mailmanup' );
  
 
 function oauth_authlink( $callback = '' ){
@@ -91,9 +91,10 @@ function authenticate_user() {
 
 function auth_create_cookie($userid){
 	global $config, $db;
-	if ( empty($userid) || empty(COOKIE_KEY) )
+
+	if ( empty($userid) || empty(COOKIE_KEY) ){
 		return false;
-		
+	}
 	$user = $db->get_user($userid);
 	if ( empty($user) || strlen($user->token_secret)<1 )
 		return false;
