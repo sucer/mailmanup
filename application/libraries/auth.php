@@ -92,7 +92,7 @@ function authenticate_user() {
 function auth_create_cookie($userid){
 	global $config, $db;
 
-	if ( empty($userid) || empty(COOKIE_KEY) ){
+	if ( empty($userid) ){
 		return false;
 	}
 	$user = $db->get_user($userid);
