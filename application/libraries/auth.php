@@ -2,19 +2,11 @@
 
 // Ejemplo del uso del API de Twitter con OAuth 
 // más detalles en: 
-// http://www.maestrosdelweb.com/editorial/twitter-autenticacion-oauth-api-login/
-
- define( CONSUMER_KEY, 'dsHJI24QDBPEURjzz2Kw' );
- define( CONSUMER_SECRET , 'lHir6LJbKZiDCF3dRihHjd3ITosTaciwJbnIxlYDiI' );
- define( SITE_URL , 'http://sevenstartups.com' );
- define( SITE_PATH, '/login' );
- define( COOKIE_PREFIX, 'mailmanup_' );
- define( COOKIE_KEY , 'auth_mailmanup' );
- 
+// http://www.maestrosdelweb.com/editorial/twitter-autenticacion-oauth-api-login/ 
 
 function oauth_authlink( $callback = '' ){
 	include_once(path('app').'libraries/twitterOAuth.php');
-	$oauth = new TwitterOAuth( CONSUMER_KEY, CONSUMER_SECRET );
+	$oauth = new TwitterOAuth( Config::get('mailmanup.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET') );
 		
 	oauth_clearcookies();
 		
@@ -42,7 +34,7 @@ function oauth_authenticate(){
 
 	// Usamos los tokens temporales
 	include_once(path('app').'libraries/twitterOAuth.php');
-	$to = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_COOKIE['oauth_request_token'], $_COOKIE['oauth_request_token_secret']);
+	$to = new TwitterOAuth(Config::get('cognos.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET'), $_COOKIE['oauth_request_token'], $_COOKIE['oauth_request_token_secret']);
 
 	/* Ahora solicitamos los tokens de acceso, que serán permanentes */
 	$tok = $to->getAccessToken( $oauth_verifier );
@@ -104,19 +96,19 @@ function auth_create_cookie($userid){
 	// based on wp_generate_auth_cookie() function from Wordpress.
 	$pass_frag = substr($user->token_secret, 4, 15);
 	
-	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, COOKIE_KEY );
+	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.COOKIE_KEY') );
 	$hash = hash_hmac('md5', $user->userid . '|' . $expiration, $key);
 	
 	$cookie = $user->userid . '|' . $expiration . '|' . $hash;
 	
-	$cookie_name = COOKIE_PREFIX . md5( SITE_URL );
+	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX'). md5( Config::get('mailmanup.SITE_URL') );
 
-	setcookie($cookie_name, $cookie, $expiration, SITE_PATH . '/', '', false, true);
+	setcookie($cookie_name, $cookie, $expiration, onfig::get('mailmanup.SITE_URL') . '/', '', false, true);
 }
 
 function auth_verify_cookie(){
 	global $config, $db;
-	$cookie_name = COOKIE_PREFIX . md5( SITE_URL );
+	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX') . md5( Config::get('mailmanup.SITE_URL') );
 	if ( !isset( $_COOKIE[$cookie_name])  )
 		return false;
 
@@ -133,7 +125,7 @@ function auth_verify_cookie(){
 		return false;
 
 	$pass_frag = substr($user->token_secret, 4, 15);
-	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, COOKIE_KEY);
+	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.COOKIE_KEY'));
 	$hash = hash_hmac('md5', $user->userid . '|' . $expiration, $key);
 
 	if ( $hmac != $hash )
@@ -149,6 +141,6 @@ function auth_clear_cookie() {
 	global $config;
 	$expire = $_SERVER['REQUEST_TIME'] - 31536000;
 	
-	$cookie_name = COOKIE_PREFIX . md5( SITE_URL ); 
+	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX') . md5( Config::get('mailmanup.SITE_URL') ); 
 	setcookie($cookie_name, '', $expire );
 }
