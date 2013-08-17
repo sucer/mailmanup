@@ -56,7 +56,6 @@ function oauth_authenticate(){
 }
 
 function authenticate_user() {	
-	include_once(path('app').'libraries/twitterOAuth.php');
 	$info = oauth_authenticate();
 	if ( $info == false || !is_array($info) ) 
 	{
@@ -138,7 +137,7 @@ function auth_verify_cookie(){
 	return true;
 }
 
-function auth_clear_cookie() {
+function auth_clear_cookies() {
 	global $config;
 	$expire = $_SERVER['REQUEST_TIME'] - 31536000;
 	
