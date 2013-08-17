@@ -14,7 +14,7 @@
 
 function oauth_authlink( $callback = '' ){
 	include_once(path('app').'libraries/twitterOAuth.php');
-	oauth = new TwitterOAuth( CONSUMER_KEY, CONSUMER_SECRET );
+	$oauth = new TwitterOAuth( CONSUMER_KEY, CONSUMER_SECRET );
 		
 	oauth_clearcookies();
 		
