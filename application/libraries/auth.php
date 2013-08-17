@@ -56,6 +56,7 @@ function oauth_authenticate(){
 }
 
 function authenticate_user() {	
+	include_once(path('app').'libraries/twitterOAuth.php');
 	$info = oauth_authenticate();
 	if ( $info == false || !is_array($info) ) 
 	{
