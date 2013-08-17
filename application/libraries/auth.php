@@ -60,7 +60,7 @@ function authenticate_user() {
 	{
 		die( 'Autenticación no completada, datos incorrectos' ); // ustedes deben usar algo más elegante que die()
 	}
-
+var_dump($info);
 	/*global $db;
 	$user = $db->get_user( $info['userid'] );
 	if ( empty($user) )  // primera vez por acá
