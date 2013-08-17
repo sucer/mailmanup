@@ -74,7 +74,7 @@ function authenticate_user() {
 	$user = $db->get_user( $info['userid'] );
 	if ( empty($user) )  // primera vez por acá
 	{
-		$user = $db->add_user_from_twitter($info['userid'], $info['token'], $info['token_secret'])
+		$user = $db->add_user_from_twitter($info['userid'], $info['token'], $info['token_secret']);
 	} else 
 	{ // solo actualizar los tokens de acceso
 		$db->update_user_tokens($info['userid'], $info['token'], $info['token_secret']);
