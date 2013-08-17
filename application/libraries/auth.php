@@ -6,7 +6,7 @@
 
 function oauth_authlink( $callback = '' ){
 	include_once(path('app').'libraries/twitterOAuth.php');
-
+echo "Consumer key ".Config::get('mailmanup.CONSUMER_KEY');
 	$oauth = new TwitterOAuth( Config::get('mailmanup.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET') );
 var_dump($oauth);		
 	//oauth_clearcookies();
