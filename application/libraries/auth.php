@@ -6,8 +6,8 @@
 
 function oauth_authlink( $callback = '' ){
 	include_once(path('app').'libraries/twitterOAuth.php');
-echo "Consumer key: ".Config::get('mailmanup.cuantos')."<br />";
-	$oauth = new TwitterOAuth( Config::get('mailmanup.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET') );
+echo "Consumer key: ".Config::get('mailmanup.consumer_key')."<br />";
+	$oauth = new TwitterOAuth( Config::get('mailmanup.consumer_key'), Config::get('mailmanup.consumer_secret') );
 var_dump($oauth);		
 	//oauth_clearcookies();
 		
@@ -35,7 +35,7 @@ function oauth_authenticate(){
 
 	// Usamos los tokens temporales
 	include_once(path('app').'libraries/twitterOAuth.php');
-	$to = new TwitterOAuth(Config::get('cognos.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET'), $_COOKIE['oauth_request_token'], $_COOKIE['oauth_request_token_secret']);
+	$to = new TwitterOAuth(Config::get('cognos.consumer_key'), Config::get('mailmanup.consumer_secret'), $_COOKIE['oauth_request_token'], $_COOKIE['oauth_request_token_secret']);
 
 	/* Ahora solicitamos los tokens de acceso, que serán permanentes */
 	$tok = $to->getAccessToken( $oauth_verifier );
@@ -97,19 +97,19 @@ function auth_create_cookie($userid){
 	// based on wp_generate_auth_cookie() function from Wordpress.
 	$pass_frag = substr($user->token_secret, 4, 15);
 	
-	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.COOKIE_KEY') );
+	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.cookie_key') );
 	$hash = hash_hmac('md5', $user->userid . '|' . $expiration, $key);
 	
 	$cookie = $user->userid . '|' . $expiration . '|' . $hash;
 	
-	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX'). md5( Config::get('mailmanup.SITE_URL') );
+	$cookie_name = Config::get('mailmanup.cookie_prefix'). md5( Config::get('mailmanup.site_url') );
 
 	setcookie($cookie_name, $cookie, $expiration, onfig::get('mailmanup.SITE_URL') . '/', '', false, true);
 }
 
 function auth_verify_cookie(){
 	global $config, $db;
-	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX') . md5( Config::get('mailmanup.SITE_URL') );
+	$cookie_name = Config::get('mailmanup.cookie_prefix') . md5( Config::get('mailmanup.site_url') );
 	if ( !isset( $_COOKIE[$cookie_name])  )
 		return false;
 
@@ -126,7 +126,7 @@ function auth_verify_cookie(){
 		return false;
 
 	$pass_frag = substr($user->token_secret, 4, 15);
-	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.COOKIE_KEY'));
+	$key  = hash_hmac('md5', $user->userid . $pass_frag . '|' . $expiration, Config::get('mailmanup.cookie_key'));
 	$hash = hash_hmac('md5', $user->userid . '|' . $expiration, $key);
 
 	if ( $hmac != $hash )
@@ -142,6 +142,6 @@ function oauth_clearcookies() {
 	global $config;
 	$expire = $_SERVER['REQUEST_TIME'] - 31536000;
 	
-	$cookie_name = Config::get('mailmanup.COOKIE_PREFIX') . md5( Config::get('mailmanup.SITE_URL') ); 
+	$cookie_name = Config::get('mailmanup.cookie_prefix') . md5( Config::get('mailmanup.site_url') ); 
 	setcookie($cookie_name, '', $expire );
 }
