@@ -4,7 +4,7 @@
 // más detalles en: 
 // http://www.maestrosdelweb.com/editorial/twitter-autenticacion-oauth-api-login/
 
- define( CONSUMER_KEY, 'dsHJI24QDBPEURjzz2Kw' )
+ define( CONSUMER_KEY, 'dsHJI24QDBPEURjzz2Kw' );
  define( CONSUMER_SECRET , 'lHir6LJbKZiDCF3dRihHjd3ITosTaciwJbnIxlYDiI' );
  define( SITE_URL , 'http://sevenstartups.com' );
  define( SITE_PATH, '/login' );
