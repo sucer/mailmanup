@@ -6,19 +6,20 @@
 
 function oauth_authlink( $callback = '' ){
 	include_once(path('app').'libraries/twitterOAuth.php');
+
 	$oauth = new TwitterOAuth( Config::get('mailmanup.CONSUMER_KEY'), Config::get('mailmanup.CONSUMER_SECRET') );
-		
-	oauth_clearcookies();
+var_dump($oauth);		
+	//oauth_clearcookies();
 		
 	/* Solicitar el token a twitter */
-	$tok = $oauth->getRequestToken( $callback );
+	//$tok = $oauth->getRequestToken( $callback );
 		
 	/* Dejar los tokens guardados al usuario para pasos después, son temporales */
-	setcookie('oauth_request_token', $tok['oauth_token'], 0 );
-	setcookie('oauth_request_token_secret', $tok['oauth_token_secret'] , 0 );
+	//setcookie('oauth_request_token', $tok['oauth_token'], 0 );
+	//setcookie('oauth_request_token_secret', $tok['oauth_token_secret'] , 0 );
 		
 	/* Construir el url de autenticación */
-	return $oauth->getAuthorizeURL($tok['oauth_token'],true);
+	//return $oauth->getAuthorizeURL($tok['oauth_token'],true);
 }
 
 function oauth_authenticate(){
