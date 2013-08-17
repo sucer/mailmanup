@@ -61,7 +61,7 @@ function authenticate_user() {
 		die( 'Autenticación no completada, datos incorrectos' ); // ustedes deben usar algo más elegante que die()
 	}
 
-	global $db;
+	/*global $db;
 	$user = $db->get_user( $info['userid'] );
 	if ( empty($user) )  // primera vez por acá
 	{
@@ -69,13 +69,13 @@ function authenticate_user() {
 	} else 
 	{ // solo actualizar los tokens de acceso
 		$db->update_user_tokens($info['userid'], $info['token'], $info['token_secret']);
-	}
+	}*/
 	
 	oauth_clearcookies();
 	auth_create_cookie( $info['userid'] );
 	
 	global $config;
-	header('Location: ' . SITE_URL, true, 301);
+	header('Location: ' . onfig::get('cognos.site_url'), true, 301);
 	die;
 }
 
