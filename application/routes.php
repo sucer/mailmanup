@@ -70,6 +70,20 @@ Route::any('/grid',function(){
 	return View::make('sms.grid');
 });
 
+Route::any('/login-twitter',function(){
+	require_once(path('app').'libraries/auth.php');
+	$url =  oauth_authlink( 'http://sevenstartups.com/intranet/' );
+    header('Location: ' . $url, true, 302);
+    die;
+});
+
+Route::any('/intranet',function(){
+	require_once(path('app').'libraries/auth.php');
+	authenticate_user();
+	echo "Se autentico con twitter";
+});
+
+
 Route::get('/', function(){
 	
 	
