@@ -137,7 +137,7 @@ function auth_verify_cookie(){
 	return true;
 }
 
-function auth_clear_cookies() {
+function oauth_clearcookies() {
 	global $config;
 	$expire = $_SERVER['REQUEST_TIME'] - 31536000;
 	
