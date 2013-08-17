@@ -7,6 +7,6 @@ return array(
 	'CONSUMER_SECRET'=>'lHir6LJbKZiDCF3dRihHjd3ITosTaciwJbnIxlYDiI',
 	'SITE_URL'=>'http://sevenstartups.com',
 	'SITE_PATH'=>'/login-twitter',
-	'COOKIE_PREFIX'=>'mailmanup_',
+	'COOKIE_PREFIX'=>'mailmanup_', 
 	'COOKIE_KEY'=>'a151fb74b05322127169dd8eefe2ff74',
 );
