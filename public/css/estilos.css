@@ -18,3 +18,27 @@
 	margin: 0.1em 0.1em;
 	padding: 0.1em 0.2em;
 }
+.log-in {
+	margin-top: 30px;
+}
+
+.log-in a {
+	display: block;
+	background: #1ec4fe url("img/tt.png") 8px center no-repeat;
+	margin: 15px 25px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 10px 50px;
+	font-size: 13px;
+	padding-right: 0;
+	border: 1px solid #1b9ac7;
+	border-bottom-width: 3px;
+	border-radius: 5px 5px 3px 3px;
+	transition: background-color .2s ease-out;
+}
+
+.log-in a.btn-facebook {
+	background-color: #1e62a9;
+	background-image: url("img/fb.png");
+	border-color: #143f72;
+}
