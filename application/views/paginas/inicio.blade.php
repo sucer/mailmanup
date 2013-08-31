@@ -8,10 +8,7 @@
 		{{__('inicio.eslogan')}}
 	</h2>
 
-	<div class="log-in"> 
-		<a href="/login-twitter" class="btn-twitter">Entra con <strong>Twitter</strong></a>
-		<a href="/login-facebook" class="btn-facebook">Entra con <strong>Facebook</strong></a>
-	</div>
+	
 	
 	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem mollitia odio ipsum unde iure molestiae sint architecto commodi! Quasi, deleniti a tenetur perspiciatis soluta ab eius quam officia tempore quisquam!</div>
 	<div>Consequatur, et, corporis, ullam dicta eveniet maxime magni nulla aspernatur velit labore unde delectus sint quia quibusdam dolorem laudantium alias ratione nemo quos perspiciatis nam nostrum molestiae dolorum dolores eligendi.</div>

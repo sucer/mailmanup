@@ -44,16 +44,12 @@
                 <li class="dropdown visible-desktop">
                   <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{__('inicio.entrar')}} <strong class="caret"></strong></a>
                   <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                    {{ Form::open('home/login', 'POST',array('class'=>'')) }}
-                    {{ Form::token() }}
-                    {{ Form::text('username', Input::old('username'), array('class' => 'span2', 'placeholder' => __('inicio.usuario'))) }}
-                    {{ Form::password('password', array('class' => 'span2', 'placeholder' => __('inicio.clave'))) }}
-                    {{ Form::submit(__('inicio.entrar'), array('class'=>'btn-info')) }}
-                  {{ Form::close() }}
+                    <div class="log-in"> 
+                      <a href="/login-twitter" class="btn-twitter">Entra con <strong>Twitter</strong></a>
+                      <a href="/login-facebook" class="btn-facebook">Entra con <strong>Facebook</strong></a>
+                    </div>
                   </div>
                 </li>
-
-
 
                 <li class="dropdown visible-desktop">
                   <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{__('inicio.idioma')}} <strong class="caret"></strong></a>
