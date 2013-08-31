@@ -24,7 +24,7 @@
 
 .log-in a {
 	display: block;
-	background: #1ec4fe url("img/tt.png") 8px center no-repeat;
+	background: #1ec4fe url("../img/tt.png") 8px center no-repeat;
 	margin: 15px 25px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -39,6 +39,6 @@
 
 .log-in a.btn-facebook {
 	background-color: #1e62a9;
-	background-image: url("img/fb.png");
+	background-image: url("../img/fb.png");
 	border-color: #143f72;
 }
