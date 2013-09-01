@@ -71,8 +71,8 @@ var_dump($info);
 		$db->update_user_tokens($info['userid'], $info['token'], $info['token_secret']);
 	}*/
 	
-	oauth_clearcookies();
-	auth_create_cookie( $info['userid'] );
+	//oauth_clearcookies();
+	//auth_create_cookie( $info['userid'] );
 	
 	global $config;
 	header('Location: ' . onfig::get('cognos.site_url'), true, 301);
