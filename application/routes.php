@@ -82,7 +82,7 @@ Route::any('/login-google',function(){
 });
 
 Route::any('/intranet',function(){
-	require_once(path('app').'libraries/auth.php');
+	require_once(path('app').'libraries/authtwitter.php');
 	authenticate_user();
 	echo "Se autentico con twitter";
 });
