@@ -12,5 +12,5 @@ return array(
 	'google_client_id' => '505391310537-4agmfe5t4hn0cialjacrjup9477h3aur.apps.googleusercontent.com',
 	'google_client_secret'=>'g6MFsoUNbGAIjIzrq4f41Mo0',
 	'google_redirect_url'=>'http://sevenstartups.com/login-google',
-	'google_developer_key'=>'AIzaSyASRaiqL2EdOx25GkWzgb8ynbxtTzHZOyo',
+	'google_developer_key'=>'AIzaSyBHdNpr9BYA3htqXDhRZauHeRqgZaJeOzA',
 );
