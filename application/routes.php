@@ -78,7 +78,9 @@ Route::any('/login-twitter',function(){
 });
 
 Route::any('/login-google',function(){
+	echo "Antes <br>";
 	include(path('app').'libraries/authgoogle.php');
+	echo "Despues ";
 });
 
 Route::any('/intranet',function(){
