@@ -21,11 +21,11 @@ $gClient->setClientSecret($google_client_secret);
 $gClient->setRedirectUri($google_redirect_url);
 $gClient->setDeveloperKey($google_developer_key);
 
-var_dump($gClient);
+
 
 $google_oauthV2 = new Google_Oauth2Service($gClient);
 
-var_dump($google_oauthV2);
+
 
 //If user wish to log out, we just unset Session variable
 if (isset($_REQUEST['reset'])){
@@ -48,7 +48,7 @@ if (isset($_SESSION['token'])){
 	$gClient->setAccessToken($_SESSION['token']);
 }
 
-if ($gClient->getAccessToken()){
+if($gClient->getAccessToken()){
 	  //Get user details if user is logged in
 	  $user 				= $google_oauthV2->userinfo->get();
 var_dump($user);	  
@@ -62,6 +62,7 @@ var_dump($user);
 }
 else{
 	//get google login url
+	echo "creando autenticacion url";
 	$authUrl = $gClient->createAuthUrl();
 }
 ?>
