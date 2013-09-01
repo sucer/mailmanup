@@ -62,8 +62,8 @@ var_dump($user);
 }
 else{
 	//get google login url
-	echo "creando autenticacion url";
 	$authUrl = $gClient->createAuthUrl();
+	echo $authUrl;
 }
 ?>
 
