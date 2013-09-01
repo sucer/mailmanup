@@ -33,7 +33,7 @@ $apiConfig = array(
     'developer_key' => '',
   
     // Site name to show in the Google's OAuth 1 authentication screen.
-    'site_name' => 'www.example.org',
+    'site_name' => 'www.sevenstartups.com',
 
     // Which Authentication, Storage and HTTP IO classes to use.
     'authClass'    => 'Google_OAuth2',

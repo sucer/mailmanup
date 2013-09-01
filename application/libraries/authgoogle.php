@@ -6,12 +6,6 @@ $google_client_secret 	= Config::get('mailmanup.google_client_secret');
 $google_redirect_url 	= Config::get('mailmanup.google_redirect_url');
 $google_developer_key 	= Config::get('mailmanup.google_developer_key');
 
-########## MySql details (Replace with yours) #############
-$db_username = "xxxxxxxxxxxxxxxxxx"; //Database Username
-$db_password = "xxxxxxxxxxxxxxxxxxxx"; //Database Password
-$hostname = "localhost"; //Mysql Hostname
-$db_name = 'xxxxxxxxxxxxxx'; //Database Name
-###################################################################
 
 //include google api files
 require_once(path('app').'libraries/src/Google_Client.php');
