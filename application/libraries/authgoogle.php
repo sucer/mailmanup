@@ -53,6 +53,7 @@ if (isset($_SESSION['token'])){
 if ($gClient->getAccessToken()){
 	  //Get user details if user is logged in
 	  $user 				= $google_oauthV2->userinfo->get();
+var_dump($user);	  
 	  $user_id 				= $user['id'];
 	  $user_name 			= filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
 	  $email 				= filter_var($user['email'], FILTER_SANITIZE_EMAIL);
