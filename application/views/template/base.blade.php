@@ -46,7 +46,7 @@
                   <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
                     <div class="log-in"> 
                       <a href="/login-twitter" class="btn-twitter">Entra con <strong>Twitter</strong></a>
-                      <a href="/login-facebook" class="btn-facebook">Entra con <strong>Facebook</strong></a>
+                      <a href="/login-google" class="btn-facebook">Entra con <strong>Google</strong></a>
                     </div>
                   </div>
                 </li>
