@@ -22,7 +22,7 @@
  * @author Chirag Shah <chirags@google.com>
  */
 
-require_once 'Google_CacheParser.php';
+require_once path('app').'libraries/src/io/Google_CacheParser.php';
 
 class Google_CurlIO implements Google_IO {
   const CONNECTION_ESTABLISHED = "HTTP/1.0 200 Connection established\r\n\r\n";

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once "Google_PemVerifier.php";
+require_once path('app').'libraries/src/auth/Google_PemVerifier.php';
 
 /**
  * Verifies signatures.
