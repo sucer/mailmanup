@@ -75,7 +75,7 @@ var_dump($info);
 	//auth_create_cookie( $info['userid'] );
 	
 	global $config;
-	header('Location: ' . onfig::get('cognos.site_url'), true, 301);
+	header('Location: ' . Config::get('cognos.site_url'), true, 301);
 	die;
 }
 
