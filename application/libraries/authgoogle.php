@@ -14,8 +14,8 @@ $db_name = 'xxxxxxxxxxxxxx'; //Database Name
 ###################################################################
 
 //include google api files
-require_once(path('app').'src/Google_Client.php');
-require_once(path('app').'src/contrib/Google_Oauth2Service.php');
+require_once(path('app').'libraries/src/Google_Client.php');
+require_once(path('app').'libraries/src/contrib/Google_Oauth2Service.php');
 
 //start session
 session_start();
