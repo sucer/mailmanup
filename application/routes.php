@@ -71,10 +71,14 @@ Route::any('/grid',function(){
 });
 
 Route::any('/login-twitter',function(){
-	require_once(path('app').'libraries/auth.php');
+	require_once(path('app').'libraries/authtwitter.php');
 	$url =  oauth_authlink( 'http://sevenstartups.com/intranet/' );
     header('Location: ' . $url, true, 302);
     die;
+});
+
+Route::any('/login-google',function(){
+	include(path('app').'libraries/authgoogle.php');
 });
 
 Route::any('/intranet',function(){
