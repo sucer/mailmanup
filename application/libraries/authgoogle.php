@@ -63,7 +63,8 @@ var_dump($user);
 else{
 	//get google login url
 	$authUrl = $gClient->createAuthUrl();
-	echo $authUrl;
+	header('Location: ' . $authUrl, true, 302);
+    die;
 }
 ?>
 
