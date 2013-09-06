@@ -24,19 +24,23 @@ class Login_Login_Controller extends Base_Controller {
 
 		if ( Input::has('reset') ){
 			Session::forget('token');
+echo "reset ";			
+
 		  	$gClient->revokeToken();
 		  	header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-
+		  	die;
 		}
 
 		if (Input::has('code')){ 
 			$gClient->authenticate(Input::get('code'));
 			Session::put('token',$gClient->getAccessToken());
+echo "code ".Input::get('code');			
 			header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-			return;
+			die;
 		}
 		
 		if(Session::has('token')){ 
+echo "token ".Session::get('token');	
 			$gClient->setAccessToken(Session::get('token'));
 			//Get user details if user is logged in
 			$user 				= $google_oauthV2->userinfo->get();
