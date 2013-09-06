@@ -58,6 +58,7 @@ Route::any('/grupos','sms.grupos@listar');
 Route::any('/actualizar-grupo/(:num)','sms.grupos@actualizar');
 Route::any('/crear-grupo','sms.grupos@crear');
 Route::any('/avanzado-sms','sms.avanzado@index');
+Route::any('/login-google','login.login@google');
 
 Route::any('/git-update',function(){
 	ini_set('memory_limit','32M');
@@ -75,12 +76,6 @@ Route::any('/login-twitter',function(){
 	$url =  oauth_authlink( 'http://sevenstartups.com/intranet/' );
     header('Location: ' . $url, true, 302);
     die;
-});
-
-Route::any('/login-google',function(){
-
-	include(path('app').'libraries/authgoogle.php');
-
 });
 
 Route::any('/intranet',function(){
