@@ -36,7 +36,7 @@ echo "reset ";
 			Session::put('token',$gClient->getAccessToken());
 echo "code ".Input::get('code');			
 			header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-			die;
+
 		}
 		
 		if(Session::has('token')){ 
@@ -56,7 +56,7 @@ echo "token ".Session::get('token');
 			//get google login url
 			$authUrl = $gClient->createAuthUrl();
 			header('Location: ' . $authUrl, true, 302);
-		    die;
+
 		}
 	}
 
