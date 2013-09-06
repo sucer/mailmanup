@@ -26,14 +26,14 @@ class Login_Login_Controller extends Base_Controller {
 			Session::forget('token');
 		  	$gClient->revokeToken();
 		  	header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-		  	die;
+
 		}
 
 		if (Input::has('code')){ 
 			$gClient->authenticate(Input::get('code'));
 			Session::put('token',$gClient->getAccessToken());
 			header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-			die;
+			return;
 		}
 		
 		if(Session::has('token')){ 
