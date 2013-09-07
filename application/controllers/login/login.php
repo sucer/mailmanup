@@ -27,7 +27,8 @@ class Login_Login_Controller extends Base_Controller {
 echo "reset ";			
 
 		  	$gClient->revokeToken();
-		  	header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+		  	//header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+		  	return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 
 		}
 
@@ -35,7 +36,8 @@ echo "reset ";
 			$gClient->authenticate(Input::get('code'));
 			Session::put('token',$gClient->getAccessToken());
 echo "code ".Input::get('code');			
-			header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+			//header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+			return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 
 		}
 		
@@ -55,7 +57,8 @@ echo "token ".Session::get('token');
 		}else{
 			//get google login url
 			$authUrl = $gClient->createAuthUrl();
-			header('Location: ' . $authUrl, true, 302);
+			//header('Location: ' . $authUrl, true, 302);
+			return Redirect::to(filter_var($authUrl, FILTER_SANITIZE_URL));
 
 		}
 	}
