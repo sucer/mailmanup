@@ -27,7 +27,6 @@ class Login_Login_Controller extends Base_Controller {
 echo "reset ";			
 
 		  	$gClient->revokeToken();
-		  	//header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 		  	return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 
 		}
@@ -35,14 +34,11 @@ echo "reset ";
 		if (Input::has('code')){ 
 			$gClient->authenticate(Input::get('code'));
 			Session::put('token',$gClient->getAccessToken());
-echo "code ".Input::get('code');			
-			//header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 			return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
 
 		}
 		
 		if(Session::has('token')){ 
-echo "token ".Session::get('token');	
 			$gClient->setAccessToken(Session::get('token'));
 			//Get user details if user is logged in
 			$user 				= $google_oauthV2->userinfo->get();
@@ -53,11 +49,10 @@ echo "token ".Session::get('token');
 			$profile_image_url 	= filter_var($user['picture'], FILTER_VALIDATE_URL);
 			$personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 			Session::put('token',$gClient->getAccessToken());
-			var_dump($user);
+var_dump($user);
 		}else{
 			//get google login url
 			$authUrl = $gClient->createAuthUrl();
-			//header('Location: ' . $authUrl, true, 302);
 			return Redirect::to(filter_var($authUrl, FILTER_SANITIZE_URL));
 
 		}
