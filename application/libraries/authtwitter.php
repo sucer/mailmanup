@@ -68,7 +68,8 @@ var_dump($info);
 	//oauth_clearcookies();
 	//auth_create_cookie( $info['userid'] );
 	global $config;
-	return Redirect::to(filter_var(Config::get('cognos.site_url'), FILTER_SANITIZE_URL));
+	header('Location: ' . Config::get('cognos.site_url'), true, 301);
+	die;
 }
 
 
@@ -94,7 +95,7 @@ function auth_create_cookie($userid){
 	
 	$cookie_name = Config::get('mailmanup.cookie_prefix'). md5( Config::get('mailmanup.site_url') );
 
-	setcookie($cookie_name, $cookie, $expiration, Config::get('mailmanup.SITE_URL') . '/', '', false, true);
+	setcookie($cookie_name, $cookie, $expiration, onfig::get('mailmanup.SITE_URL') . '/', '', false, true);
 }
 
 function auth_verify_cookie(){
