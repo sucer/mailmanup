@@ -27,9 +27,7 @@ Route::any('/crear-grupo','sms.grupos@crear');
 Route::any('/avanzado-sms','sms.avanzado@index');
 Route::any('/login-google','login.login@google');
 Route::any('/login-twitter','login.login@twitter');
-Route::any('/intranet',function(){
-	
-});
+Route::any('/intranet','login.login@reqtwitter');
 Route::any('/git-update',function(){
 	ini_set('memory_limit','32M');
 	@set_time_limit(10000);
