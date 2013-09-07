@@ -13,4 +13,5 @@ return array(
 	'google_client_secret'=>'g6MFsoUNbGAIjIzrq4f41Mo0',
 	'google_redirect_url'=>'http://sevenstartups.com/login-google',
 	'google_developer_key'=>'AIzaSyBHdNpr9BYA3htqXDhRZauHeRqgZaJeOzA',
+	'twitter_redirect_url'=>'http://sevenstartups.com/intranet/',
 );

@@ -1,7 +1,4 @@
 <?php
-
-// Ejemplo del uso del API de Twitter con OAuth 
-// más detalles en: 
 // http://www.maestrosdelweb.com/editorial/twitter-autenticacion-oauth-api-login/ 
 
 function oauth_authlink( $callback = '' ){
@@ -26,8 +23,7 @@ function oauth_authenticate(){
 		
 	if ( $token == '' || !isset($_COOKIE['oauth_request_token']) || !isset($_COOKIE['oauth_request_token_secret']) 
 	|| $_COOKIE['oauth_request_token']=='' || $_COOKIE['oauth_request_token_secret']=='' 
-	|| $token != $_COOKIE['oauth_request_token'] ) 
-	{
+	|| $token != $_COOKIE['oauth_request_token'] ){
 		return false;
 	}
 
@@ -37,27 +33,25 @@ function oauth_authenticate(){
 
 	/* Ahora solicitamos los tokens de acceso, que serán permanentes */
 	$tok = $to->getAccessToken( $oauth_verifier );
-	if ( $to->lastStatusCode() != 200 )
+	if ( $to->lastStatusCode() != 200 ){
 		return false;
-		
+	}
 	$token = (string) $tok['oauth_token'];
 	$token_secret = (string) $tok['oauth_token_secret'];
 	$userid = (int) $tok['user_id'];
-	if ($userid == 0 || empty($token) || empty($token_secret) )
+	if ($userid == 0 || empty($token) || empty($token_secret) ){
 		return false;
-			
+	}
 	$info = array();
 	$info['userid'] = $userid;
 	$info['token'] = $token;
 	$info['token_secret'] = $token_secret;
-		
 	return $info;
 }
 
 function authenticate_user() {	
 	$info = oauth_authenticate();
-	if ( $info == false || !is_array($info) ) 
-	{
+	if ( $info == false || !is_array($info) ){
 		die( 'Autenticación no completada, datos incorrectos' ); // ustedes deben usar algo más elegante que die()
 	}
 var_dump($info);
@@ -73,10 +67,8 @@ var_dump($info);
 	
 	//oauth_clearcookies();
 	//auth_create_cookie( $info['userid'] );
-	
 	global $config;
-	header('Location: ' . Config::get('cognos.site_url'), true, 301);
-	die;
+	return Redirect::to(filter_var(Config::get('cognos.site_url'), FILTER_SANITIZE_URL));
 }
 
 
@@ -102,7 +94,7 @@ function auth_create_cookie($userid){
 	
 	$cookie_name = Config::get('mailmanup.cookie_prefix'). md5( Config::get('mailmanup.site_url') );
 
-	setcookie($cookie_name, $cookie, $expiration, onfig::get('mailmanup.SITE_URL') . '/', '', false, true);
+	setcookie($cookie_name, $cookie, $expiration, Config::get('mailmanup.SITE_URL') . '/', '', false, true);
 }
 
 function auth_verify_cookie(){

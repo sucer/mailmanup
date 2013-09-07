@@ -2,6 +2,7 @@
 //include google api files
 require_once(path('app').'libraries/src/Google_Client.php');
 require_once(path('app').'libraries/src/contrib/Google_Oauth2Service.php');
+require_once(path('app').'libraries/authtwitter.php');
 
 class Login_Login_Controller extends Base_Controller {
 
@@ -24,20 +25,15 @@ class Login_Login_Controller extends Base_Controller {
 
 		if ( Input::has('reset') ){
 			Session::forget('token');
-echo "reset ";			
-
 		  	$gClient->revokeToken();
 		  	return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-
 		}
 
 		if (Input::has('code')){ 
 			$gClient->authenticate(Input::get('code'));
 			Session::put('token',$gClient->getAccessToken());
 			return Redirect::to(filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-
 		}
-		
 		if(Session::has('token')){ 
 			$gClient->setAccessToken(Session::get('token'));
 			//Get user details if user is logged in
@@ -50,12 +46,21 @@ echo "reset ";
 			$personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 			Session::put('token',$gClient->getAccessToken());
 var_dump($user);
+
 		}else{
 			//get google login url
 			$authUrl = $gClient->createAuthUrl();
 			return Redirect::to(filter_var($authUrl, FILTER_SANITIZE_URL));
-
 		}
+	}
+
+	public function action_twitter(){
+		$url =  oauth_authlink( Config::get('mailmanup.twitter_redirect_url') );
+    	return Redirect::to(filter_var($url, FILTER_SANITIZE_URL));
+	}
+
+	public function action_reqtwitter(){
+		authenticate_user();
 	}
 
 }

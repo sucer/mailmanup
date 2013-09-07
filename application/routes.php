@@ -1,36 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Simply tell Laravel the HTTP verbs and URIs it should respond to. It is a
-| breeze to setup your application using Laravel's RESTful routing and it
-| is perfectly suited for building large applications and simple APIs.
-|
-| Let's respond to a simple GET request to http://example.com/hello:
-|
-|		Route::get('hello', function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| You can even respond to more than one URI:
-|
-|		Route::post(array('hello', 'world'), function()
-|		{
-|			return 'Hello World!';
-|		});
-|
-| It's easy to allow URI wildcards using (:num) or (:any):
-|
-|		Route::put('hello/(:any)', function($name)
-|		{
-|			return "Welcome, $name.";
-|		});
-|
-*/
 /************ CONTROLADORES AJAX ***********/
 //http://cognos-univirtual.utp.edu.co/ajax/idioma/cambiar
 Route::controller('ajax.idioma');
@@ -38,8 +7,6 @@ Route::controller('ajax.grupos');
 Route::controller('ajax.atributo');
 Route::controller('ajax.registro');
 Route::controller('ajax.celda');
-
-
 /*****************************************************/
 //Personalización de URL amigables
 //Llamado ajax para cambiar el idioma de la app
@@ -59,61 +26,24 @@ Route::any('/actualizar-grupo/(:num)','sms.grupos@actualizar');
 Route::any('/crear-grupo','sms.grupos@crear');
 Route::any('/avanzado-sms','sms.avanzado@index');
 Route::any('/login-google','login.login@google');
-
+Route::any('/login-twitter','login.login@twitter');
+Route::any('/intranet',function(){
+	
+});
 Route::any('/git-update',function(){
 	ini_set('memory_limit','32M');
 	@set_time_limit(10000);
 	exec('cd /var/www/mailmanup/;git pull origin master',$salida);
-        var_dump($salida);
+    var_dump($salida);
 });
 
 Route::any('/grid',function(){
 	return View::make('sms.grid');
 });
 
-Route::any('/login-twitter',function(){
-	require_once(path('app').'libraries/authtwitter.php');
-	$url =  oauth_authlink( 'http://sevenstartups.com/intranet/' );
-    header('Location: ' . $url, true, 302);
-    die;
-});
-
-Route::any('/intranet',function(){
-	require_once(path('app').'libraries/authtwitter.php');
-	authenticate_user();
-	echo "Se autentico con twitter";
-});
-
-
 Route::get('/', function(){
-	
-	
-	/*foreach (Cliente::all() as $cliente){
-    	echo $cliente->nombres."<br />";
-    	echo $cliente->fecha_creacion."<br />";
-	}
-
-
-	$hijos = Cliente::find(1)->colaboradores_padre;
-
-	foreach ($hijos as $key => $hijo) {
-	 	# code...
-	 	echo $hijo->cliente_hijo()->first()->nombres."<br />";
-
-	} 
-
-	$padres = Cliente::find(1)->colaboradores_hijos;
-
-	foreach ($padres as $key => $padre) {
-	 	# code...
-	 	echo $padre->cliente_padre()->first()->nombres."<br />";
-
-	}*/
-	
 	return View::make('paginas.inicio');
 });
-
-
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
