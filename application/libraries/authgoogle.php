@@ -51,6 +51,7 @@ if (isset($_SESSION['token'])){
 if($gClient->getAccessToken()){
 	  //Get user details if user is logged in
 	  $user 				= $google_oauthV2->userinfo->get();
+var_dump($user);	  
 	  $user_id 				= $user['id'];
 	  $user_name 			= filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
 	  $email 				= filter_var($user['email'], FILTER_SANITIZE_EMAIL);
@@ -58,8 +59,8 @@ if($gClient->getAccessToken()){
 	  $profile_image_url 	= filter_var($user['picture'], FILTER_VALIDATE_URL);
 	  $personMarkup 		= "$email<div><img src='$profile_image_url?sz=50'></div>";
 	  $_SESSION['token'] 	= $gClient->getAccessToken();
-	  var_dump($user);
-}else{
+}
+else{
 	//get google login url
 	$authUrl = $gClient->createAuthUrl();
 	header('Location: ' . $authUrl, true, 302);
