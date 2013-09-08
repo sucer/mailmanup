@@ -110,8 +110,7 @@ var_dump($user);
 			if ($fbme) {
 				// teniendo el objeto Facebook ME (datos del usuario) procedemos
 	            // a realizar nuestro proceso ya sea de login o registro.
-var_dump($fbme);
-				proceed_login_or_register($fbme);
+				var_dump($fbme);
 			} 
 		}
 	}
