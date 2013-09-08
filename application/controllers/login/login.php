@@ -106,7 +106,7 @@ var_dump($user);
 			// asignamos al objeto Facebook el token para proceder a realizar
 			// llamadas al API posteriormente
 			$facebook->setAccessToken($params['access_token']);
-			$fbme = $this->facebook->api('/me', 'GET');
+			$fbme = $facebook->api('/me', 'GET');
 			if ($fbme) {
 				// teniendo el objeto Facebook ME (datos del usuario) procedemos
 	            // a realizar nuestro proceso ya sea de login o registro.
