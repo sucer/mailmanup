@@ -3,6 +3,7 @@
 require_once(path('app').'libraries/src/Google_Client.php');
 require_once(path('app').'libraries/src/contrib/Google_Oauth2Service.php');
 require_once(path('app').'libraries/authtwitter.php');
+require_once(path('app').'libraries/facebook/facebook.php');
 
 class Login_Login_Controller extends Base_Controller {
 
@@ -61,6 +62,58 @@ var_dump($user);
 
 	public function action_reqtwitter(){
 		authenticate_user();
+	}
+
+	public function action_facebook(){
+		// manejar codigo de error, si esta presente
+		if (Input::has($_REQUEST['error_reason')) {
+			 return Redirect::to('/');
+		}
+		// construir el objecto sdk de facebook
+		$login_url = Config::get('mailmanup.fb_redirect_url');
+		$fb_apikey = Config::get('mailmanup.fb_apikey');
+		$fb_secret = Config::get('mailmanup.fb_secret');
+
+		$facebook = new Facebook(array(
+			'appId' => $fb_apikey,
+			'secret' => $fb_secret
+		));
+
+		// obtener el codigo de respuesta
+		$code = Input::get('code');
+
+		// construir el URL de login de Facebook
+		$loginUrl = $facebook->getLoginUrl(array(
+			'scope' => 'email',
+			'display' => 'popup',
+			'redirect_uri' => $login_url
+		));
+		// si no existe codigo de retorno de facebook, enviarmos al usuario al formulario
+		// de login de Facebook
+		if(empty($code)){
+			return Redirect::to(filter_var($loginUrl, FILTER_SANITIZE_URL));
+		}else{
+			// obtener el token de autenticacion a partir de Facebook Graph
+			$token_url = "https://graph.facebook.com/oauth/access_token?"
+			   . "client_id=" . $fb_apikey . "&redirect_uri=" . urlencode($login_url)
+			   . "&client_secret=" . $fb_secret . "&code=" . $code;
+
+			// obtenemos la respuesta y la interpretamos
+			$response = @file_get_contents($token_url);
+			$params = null;
+			parse_str($response, $params);
+
+			// asignamos al objeto Facebook el token para proceder a realizar
+			// llamadas al API posteriormente
+			$facebook->setAccessToken($params['access_token']);
+			$fbme = $this->facebook->api('/me', 'GET');
+			if ($fbme) {
+				// teniendo el objeto Facebook ME (datos del usuario) procedemos
+	            // a realizar nuestro proceso ya sea de login o registro.
+var_dump($fbme);
+				proceed_login_or_register($fbme);
+			} 
+		}
 	}
 
 }

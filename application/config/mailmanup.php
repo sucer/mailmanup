@@ -14,4 +14,7 @@ return array(
 	'google_redirect_url'=>'http://sevenstartups.com/login-google',
 	'google_developer_key'=>'AIzaSyBHdNpr9BYA3htqXDhRZauHeRqgZaJeOzA',
 	'twitter_redirect_url'=>'http://sevenstartups.com/auth-twitter/',
+	'fb_apikey'=>'513457558728310',
+	'fb_secret'=>'332d788e80b1cc8b6d2d198e8352f7bf',
+	'fb_redirect_url'=>'http://sevenstartups.com/login-facebook',
 );
