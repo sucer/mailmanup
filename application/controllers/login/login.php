@@ -66,7 +66,7 @@ var_dump($user);
 
 	public function action_facebook(){
 		// manejar codigo de error, si esta presente
-		if (Input::has($_REQUEST['error_reason')) {
+		if (Input::has('error_reason')) {
 			 return Redirect::to('/');
 		}
 		// construir el objecto sdk de facebook
