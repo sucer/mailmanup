@@ -85,7 +85,7 @@ var_dump($user);
 		// construir el URL de login de Facebook
 		$loginUrl = $facebook->getLoginUrl(array(
 			'scope' => 'email',
-			'display' => 'popup',
+			'display' => 'page',
 			'redirect_uri' => $login_url
 		));
 		// si no existe codigo de retorno de facebook, enviarmos al usuario al formulario
